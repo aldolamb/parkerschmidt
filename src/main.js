@@ -4,6 +4,18 @@ import Vimeo from "./icons/vimeo.svg";
 import Mail from "./icons/mail.svg";
 const firebase = require("firebase");
 
+const filters = [
+    "All",
+    "Motion Graphics",
+    "Compositing",
+    "VFX",
+    "Designer",
+    "Director",
+    "Editor",
+    "Filmer",
+    "Illustrator"
+];
+
 export class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -116,7 +128,7 @@ export class Main extends React.Component {
                     <div>{new Date(item["Date"]).toLocaleString()}</div>
                 </div>
                 }
-                <a key={item.Title} href={item.URL}>
+                <a key={item.Title} href={`/projects/${item.key}`}>
                     <img src={item.Image} alt={item.Title} className="image"/>
                     <div className="overlay">
                         <div className="text">
@@ -137,16 +149,7 @@ export class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                <header>
-                    <div style={{float: "left"}}>PARKER SCHMIDT</div>
-                    <div style={{float: "right", paddingTop: ".25em"}} >
-                        <a href="https://www.instagram.com/parkerrschmidtt/?hl=en"><img src={Instagram}/></a>
-                        <a href="https://vimeo.com/parkerschmidt"><img src={Vimeo}/></a>
-                        <a href="mailto:parkerschmidt95@gmail.com"><img style={{fontSize: "1.2em", paddingLeft: ".45em", marginBottom: "-.07em"}} src={Mail}/></a>
-                    </div>
-                </header>
-
-                <iframe id="showReelVideo" className="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"
+                <iframe className="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"
                             frameBorder="0" allowFullScreen/>
 
                 <form className="filters" action="">
@@ -181,12 +184,6 @@ export class Main extends React.Component {
                 <div className="posts">
                     {Object.values(this.state.data).map(this.createPosts)}
                 </div>
-
-                <footer>
-                    <a href="https://www.instagram.com/parkerrschmidtt/?hl=en">Instagram</a>
-                    <a href="https://vimeo.com/parkerschmidt">Vimeo</a>
-                    <a href="mailto:parkerschmidt95@gmail.com">Contact</a>
-                </footer>
             </div>
         );
     }
