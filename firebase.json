@@ -1,0 +1,46 @@
+{
+  "hosting": {
+    "headers": [ {
+      "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers" : [ {
+        "key" : "Access-Control-Allow-Origin",
+        "value" : "*"
+      } ]
+    }, {
+      "source" : "**/*.@(js|css)",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=604800"
+      } ]
+    }, {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=604800"
+      } ]
+    }, {
+      // Sets the cache header for 404 pages to cache for 5 minutes
+      "source" : "404.html",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=300"
+      } ]
+    } ],
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}
