@@ -10,7 +10,6 @@ body {
     letter-spacing: 5px;
     box-sizing: content-box;
     font-family: 'Gotham', 'Montserrat', sans-serif;
-    /*font-family: 'Montserrat', sans-serif;*/
     background: repeating-linear-gradient(to bottom, #ffffff, #fef4ff, #d1dff9, #ffffff);
     background-size: 100% 300em;
     /*background-repeat: no-repeat;*/
@@ -27,45 +26,6 @@ button {
     border: black solid thin;
 }
 
-.showReel {
-    width: 100vw;
-    height: 100vh;
-    /*display: block;*/
-    display: none;
-    max-width: 144vh;
-    position: absolute;
-    margin: auto;
-    /*top: 43.75%;*/
-    top: 50%;
-    left: 50%;
-    /*-webkit-transform: translate(-50%, -43.75%);*/
-    /*-ms-transform: translate(-50%, -43.75%);*/
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-}
-
-.embed-container {
-    /*top: 50%;*/
-    /*transform: translateY(-50%);*/
-    /*position: absolute;*/
-    /*top: 43.75%;*/
-    /*left: 50%;*/
-    /*transform: translate(-50%, -43.75%);*/
-    /*padding-bottom: 56.25%;*/
-    /*height: 56.25%;*/
-
-    /*width: inherit;*/
-    /*max-width: inherit;*/
-    width: 100%;
-    /*height: 0;*/
-    overflow: hidden;
-    /*max-width: 100%;*/
-    height: auto;
-    margin: auto;
-    /*max-width: 144vh;*/
-
-}
-
 .showReelVideo {
     width: 100vw;
     height: 56.25vw;
@@ -77,27 +37,21 @@ button {
     min-height: 27vw;
 }
 
-/*.embed-container iframe, .embed-container object, .embed-container embed {*/
-    /*width: 100vw;*/
-    /*height: 56.25vw;*/
+header {
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: 100vw;
+    padding: 0 5vw;
+    margin-top: 1vh;
+    font-size: 1.4em;
+    line-height: 10vh;
+}
 
-    /*max-width: 136vh;*/
-    /*max-height: 76.5vh;*/
-
-    /*min-width: 48vw;*/
-    /*min-height: 27vw;*/
-/*}*/
-
-/*.showReel {*/
-    /*width: 100vw;*/
-    /*height: max-content;*/
-    /*!*height: 65vh;*!*/
-    /*margin: 15vh 0;*/
-    /*!*background-color: black;*!*/
-    /*display: none;*/
-    /*top: 0;*/
-    /*left: 0;*/
-/*}*/
+header img {
+    height: .95em;
+    padding: 0 .55em;
+}
 
 .filters {
     letter-spacing: 0;
@@ -160,15 +114,6 @@ input[type="radio"]:checked + label {
     width: 30em;
 }
 
-header {
-    width: 100%;
-    height: 86vh;
-    padding-top: 7vh;
-    letter-spacing: 5px;
-    display: table;
-    text-align: center;
-}
-
 .middle {
     display: table-cell;
     vertical-align: middle;
@@ -177,8 +122,6 @@ header {
 h1 {
     width: 100vw;
     margin: auto;
-    /*padding: 45vh 0 0;*/
-    /*margin: 0;*/
     font-size: 2.5em;
     text-align: center;
     word-wrap: break-word;
@@ -193,10 +136,6 @@ a {
     text-decoration: none;
     color: black;
 }
-
-/*.posts {*/
-    /*min-height: 70vh;*/
-/*}*/
 
 .container {
     position: relative;
@@ -268,28 +207,8 @@ pre {
     line-height: 1.4;
 }
 
-.header {
-    box-sizing: border-box;
-    letter-spacing: 1px;
-    display: inline-block;
-    width: 100vw;
-    padding: 0 5vw;
-    margin-top: 1vh;
-    font-size: 1.4em;
-    line-height: 10vh;
-}
-
-.header img {
-    height: .95em;
-    padding-left: 1em;
-}
-
 .upload {
-    /*vertical-align: middle;*/
-    /*width: 200px;*/
     padding-bottom: 4em;
-    /*margin: -15vh 0 15vh;*/
-    /*margin: auto;*/
 }
 
 .single-form {
@@ -302,45 +221,19 @@ footer {
     font-size: .95em;
 }
 footer * {
-    /*padding: 1em;*/
     width: 9em;
     display:inline-block;
     letter-spacing: 1px;
-    /*float:left;*/
-    /*width: 20em;*/
 }
 
 @media only screen and (min-width: 768px) {
     .filters { display: block; }
-    /*.custom-select { display: none; }*/
 }
 
 @media only screen and (max-width: 768px) {
     .filters { display: none; }
     footer * { width: 100vw; margin: 1em auto;}
-    /*.custom-select { display: block; }*/
 }
-
-/*.work {*/
-    /*text-align: left;*/
-    /*height: 80vh;*/
-    /*!*margin-top: -120vh;*!*/
-/*}*/
-
-/*.svg {*/
-    /*height: 80vh;*/
-/*}*/
-
-/*#mySVG1, #mySVG2 {*/
-    /*!*position: fixed;*!*/
-    /*!*top: 15%;*!*/
-    /*!*width: 300px;*!*/
-    /*!*width: max-content;*!*/
-    /*width: 300px;*/
-    /*height: 300px;*/
-    /*!*margin-left:-50px;*!*/
-/*}*/
-
 
 
 

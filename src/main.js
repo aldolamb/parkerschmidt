@@ -15,14 +15,14 @@ export class Main extends React.Component {
         };
     }
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScroll, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll, false);
-    }
-
+    // componentDidMount() {
+    //     window.addEventListener('scroll', this.onScroll, false);
+    // }
+    //
+    // componentWillUnmount() {
+    //     window.removeEventListener('scroll', this.onScroll, false);
+    // }
+    //
     componentWillMount() {
         this.loadFeed();
     }
@@ -47,69 +47,37 @@ export class Main extends React.Component {
         });
     }
 
-    onScroll = () => {
-        if (
-            (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 250) &&
-            this.state.data.length && this.state.isLoaded
-        ) {
-            this.loadMore();
-        }
-    };
-
-    async loadMore() {
-        let self = this;
-        self.setState({isLoaded: false});
-
-        const data = [];
-        const lowerValue = this.state.lastVisible;
-        firebase.firestore().collection("posts").orderBy('Date', 'desc').startAfter(lowerValue).limit(5).get().then(snapshot => {
-            let lastVisible = snapshot.docs.length && snapshot.docs[snapshot.docs.length - 1].data().Date;
-            snapshot.forEach(doc => {
-                let temp = doc.data();
-                temp.key = doc.id;
-                data.push(temp);
-            });
-            if (data.length) {
-                self.setState({data: self.state.data.concat(data.reverse())});
-                self.setState({lastVisible: lastVisible, isLoaded: true})
-            }
-        })
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
-    }
-
-    handleScroll = () => {
-        // lastScrollY = window.scrollY;
-        // // console.log(window);
-        //
-        // let triangle = document.getElementById("triangle");
-        // let triangle2 = document.getElementById("triangle2");
-        // let length = triangle.getTotalLength();
-        //
-        //
-        // // The start position of the drawing
-        // triangle.style.strokeDasharray = length;
-        // triangle2.style.strokeDasharray = length;
-        //
-        // // Hide the triangle by offsetting dash. Remove this line to show the triangle before scroll draw
-        // triangle.style.strokeDashoffset = length;
-        // triangle2.style.strokeDashoffset = length;
-        //
-        // // console.log(window.innerHeight + ", " + lastScrollY);
-        // let scrollpercent = (lastScrollY-window.innerHeight) > 0 ? (lastScrollY-window.innerHeight)/200 : 0;
-        //
-        // let draw = length * scrollpercent;
-        // let draw2 = length * -scrollpercent;
-        //
-        // // Reverse the drawing (when scrolling upwards)
-        // triangle.style.strokeDashoffset = length - draw;
-        // triangle2.style.strokeDashoffset = length - draw2;
-        // document.getElementById("svg").style.marginTop = ((lastScrollY - 1400) / 1.5) + "px";
-        // // console.log(((lastScrollY - 800) / 15));
-        // document.getElementById("mySVG1").style.marginRight = ((lastScrollY - 1400) / 15) + "px";
-        // document.getElementById("mySVG2").style.marginLeft = ((lastScrollY - 1400) / 15) + "px";
-    };
+    // onScroll = () => {
+    //     if (
+    //         (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 250) &&
+    //         this.state.data.length && this.state.isLoaded
+    //     ) {
+    //         this.loadMore();
+    //     }
+    // };
+    //
+    // async loadMore() {
+    //     let self = this;
+    //     self.setState({isLoaded: false});
+    //
+    //     const data = [];
+    //     const lowerValue = this.state.lastVisible;
+    //     firebase.firestore().collection("posts").orderBy('Date', 'desc').startAfter(lowerValue).limit(5).get().then(snapshot => {
+    //         let lastVisible = snapshot.docs.length && snapshot.docs[snapshot.docs.length - 1].data().Date;
+    //         snapshot.forEach(doc => {
+    //             let temp = doc.data();
+    //             temp.key = doc.id;
+    //             data.push(temp);
+    //         });
+    //         if (data.length) {
+    //             self.setState({data: self.state.data.concat(data.reverse())});
+    //             self.setState({lastVisible: lastVisible, isLoaded: true})
+    //         }
+    //     })
+    //         .catch(err => {
+    //             console.log('Error getting documents', err);
+    //         });
+    // }
 
     static resetForm () {
         document.getElementById('contact-form').reset();
@@ -131,21 +99,6 @@ export class Main extends React.Component {
         }).then(() => {
             document.getElementById('contact-form').reset();
         });
-
-
-        // firebase.database().ref('Posts').push({
-        //     Title: title,
-        //     Subtitle: subtitle,
-        //     Body: body,
-        //     Date: date,
-        //     Time: time,
-        // }, function(error) {
-        //     if (error)
-        //         alert("Failed to save.");
-        //     else
-        //         self.props.history.push('/feed');
-        //
-        // });
     }
 
     createPosts = (item) => (
@@ -177,22 +130,6 @@ export class Main extends React.Component {
         </div>
     );
 
-    // showReel() {
-    //     document.getElementById("showReel").style.display = "block";
-    //     document.getElementById("header").style.height = "75vh";
-    //     document.getElementById("title").style.display = "none";
-    //     document.getElementById("showReelVideo").src += "&autoplay=1";
-    // }
-    //
-    // hideReel() {
-    //     document.getElementById("showReel").style.display = "none";
-    //     document.getElementById("header").style.height = "86vh";
-    //     document.getElementById("title").style.display = "table-cell";
-    //     let iframe = document.getElementById("showReelVideo");
-    //     let iframeSrc = iframe.src.replace('&autoplay=1','');;
-    //     iframe.src = iframeSrc;
-    // }
-
     handleFilterClick(filter) {
         this.setState({filter: filter});
     }
@@ -200,40 +137,17 @@ export class Main extends React.Component {
     render() {
         return (
             <div className="main">
-                {/*<div className="links">*/}
-                    {/*<img src={Instagram} className="InstagramLink" alt="instagram" />*/}
-                    {/*<img src={Vimeo} className="VimeoLink" alt="vimeo" />*/}
-                    {/*<img src={Contact} className="ContactLink" alt="contact" />*/}
-                {/*</div>*/}
-                <div id="testHeader" className="header">
+                <header>
                     <div style={{float: "left"}}>PARKER SCHMIDT</div>
                     <div style={{float: "right", paddingTop: ".25em"}} >
-                        <img src={Instagram}/>
-                        <img src={Vimeo}/>
-                        <img style={{fontSize: "1.2em", margin: "0 0 -.1em -.15em"}} src={Mail}/>
+                        <a href="https://www.instagram.com/parkerrschmidtt/?hl=en"><img src={Instagram}/></a>
+                        <a href="https://vimeo.com/parkerschmidt"><img src={Vimeo}/></a>
+                        <a href="mailto:parkerschmidt95@gmail.com"><img style={{fontSize: "1.2em", paddingLeft: ".45em", marginBottom: "-.07em"}} src={Mail}/></a>
                     </div>
-                </div>
-                {/*<div className="embed-container">*/}
-                    <iframe id="showReelVideo" className="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"
-                            frameBorder="0" allowFullScreen/>
-                {/*</div>*/}
-                {/*<header id="header">*/}
-                    {/*<div id="showReel" className="showReel">*/}
-                        {/*<div className="embed-container">*/}
-                            {/*<iframe id="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"*/}
-                                    {/*frameBorder="0" webkitallowfullscreen="true" mozallowfullscreen="true"*/}
-                                    {/*allowFullScreen/>*/}
-                        {/*</div>*/}
-                        {/*/!*<button onClick={() => this.hideReel()}style={{position: "absolute", bottom: "5%", right: 0, border: 0, letterSpacing: "5px"}}>CLOSE X</button>*!/*/}
-                    {/*</div>*/}
+                </header>
 
-                    {/*<div id="title" className="middle">*/}
-                        {/*<h1>PARKER SCHMIDT</h1>*/}
-                        {/*<button onClick={()=>this.showReel()}>2018 Reel</button>*/}
-                        {/*/!*<Mail/>*!/*/}
-                    {/*</div>*/}
-                {/*</header>*/}
-                {/*Motion graphics, compositing, vfx, designer, director, editor, filmer, illustrator*/}
+                <iframe id="showReelVideo" className="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"
+                            frameBorder="0" allowFullScreen/>
 
                 <form className="filters" action="">
                     <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
@@ -264,54 +178,10 @@ export class Main extends React.Component {
                         <label htmlFor="filter-9" style={{borderRight: "none"}}>Illustrator</label>
                 </form>
 
-                {/*<div className="custom-select">*/}
-                    {/*<select>*/}
-                        {/*<option value="All">All</option>*/}
-                        {/*<option value="Motion Graphics">Motion Graphics</option>*/}
-                        {/*<option value="Compositing">Compositing</option>*/}
-                        {/*<option value="VFX">VFX</option>*/}
-                        {/*<option value="Designer">Designer</option>*/}
-                        {/*<option value="Director">Director</option>*/}
-                        {/*<option value="Editor">Editor</option>*/}
-                        {/*<option value="Filmer">Filmer</option>*/}
-                        {/*<option value="Illustrator">Illustrator</option>*/}
-                    {/*</select>*/}
-                {/*</div>*/}
-
-                {/*{sessionStorage.getItem("loggedIn") &&*/}
-                {/*<div className="upload">*/}
-                    {/*<form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">*/}
-                        {/*<div className="form-group">*/}
-                            {/*<label htmlFor="title">Title</label>*/}
-                            {/*<input type="text" className="form-control" id="title" autoComplete="off" required/>*/}
-                        {/*</div>*/}
-                        {/*<div className="form-group">*/}
-                            {/*<label htmlFor="email">Image</label>*/}
-                            {/*<input type="text" className="form-control" id="image" aria-describedby="emailHelp" required/>*/}
-                        {/*</div>*/}
-                        {/*<div className="form-group">*/}
-                            {/*<label htmlFor="email">Url</label>*/}
-                            {/*<input type="text" className="form-control" id="url" aria-describedby="emailHelp" required/>*/}
-                        {/*</div>*/}
-                        {/*<button type="submit" className="btn btn-primary">Upload</button>*/}
-                    {/*</form>*/}
-                {/*</div>*/}
-                {/*}*/}
-
                 <div className="posts">
                     {Object.values(this.state.data).map(this.createPosts)}
                 </div>
 
-                {/*<div id="svg" className="svg">*/}
-                {/*<svg id="mySVG1">*/}
-                {/*<path fill="none" stroke="red" strokeWidth="3" id="triangle" d="M150 0 L75 200 L225 200 Z" />*/}
-                {/*Sorry, your browser does not support inline SVG.*/}
-                {/*</svg>*/}
-                {/*<svg id="mySVG2">*/}
-                {/*<path fill="none" stroke="red" strokeWidth="3" id="triangle2" d="M150 0 L75 200 L225 200 Z" />*/}
-                {/*Sorry, your browser does not support inline SVG.*/}
-                {/*</svg>*/}
-                {/*</div>*/}
                 <footer>
                     <a href="https://www.instagram.com/parkerrschmidtt/?hl=en">Instagram</a>
                     <a href="https://vimeo.com/parkerschmidt">Vimeo</a>
