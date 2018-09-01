@@ -25,7 +25,7 @@ export class Login extends React.Component {
 
     render () {
         return (
-            <div className="single-form">
+            <div className="single-form" style={{paddingTop: "30vh"}}>
                 <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
                     <div className="form-group">
                         <input placeholder="email" type="email" className="form-control" id="email" autoComplete="off" />

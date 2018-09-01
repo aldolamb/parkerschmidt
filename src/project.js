@@ -5,7 +5,7 @@ export class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {Title: "", Roles: []},
+            data: {Roles: []},
             postID: props.match.params.postID
         };
     }
@@ -17,20 +17,23 @@ export class Project extends React.Component {
     async loadFeed() {
         let self = this;
         firebase.firestore().collection("projects").doc(this.state.postID).get().then(snapshot => {
-            self.setState({data: snapshot.data()});
-            console.log(snapshot.data().Roles);
-            // this.state.data.Roles.map((e) => document.getElementById(e).checked = true);
-        }).then(() => {
-            // document.getElementById("projectVideo").src = self.state.data.Video;
-        })
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
+            if (snapshot.exists) {
+                self.setState({data: snapshot.data()});
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(err => {
+            console.log('Error getting documents', err);
+        });
     }
 
     async handleDelete() {
-        firebase.database().ref('Posts/' + this.state.postID).remove();
-        this.props.history.push('/feed/' + this.state.postID);
+        firebase.firestore().collection("projects").doc(this.state.postID).delete().then(function() {
+            this.props.history.push('/');
+        }).catch(function(error) {
+            window.alert("Error removing document: " + error);
+        });
     }
 
     createImages = (item) => (
@@ -46,37 +49,36 @@ export class Project extends React.Component {
     render() {
         return (
             <div className="projectPage">
-                {/*{this.state.data.Video}*/}
-                <iframe src={this.state.data.Video} frameBorder="0" allowFullScreen id="projectVideo" className="showReelVideo"/>
-                {/*<iframe src="" frameBorder="0" allowFullScreen id="projectVideo" className="showReelVideo"/>*/}
-                {/*<h1>{this.state.data.Title}</h1>*/}
-                {/*<p>{this.state.data.Roles.map((role) => {return role})}</p>*/}
-                <h1>{this.state.data.Title}</h1>
-                <p className="roles"><b>Roles: </b>{this.state.data.Roles.map((role) => {return role}).join(", ")}</p>
-                <div className="information">
-                    <div className="left">
-                        {/*<p style={{textAlign: "center"}}>Description</p>*/}
-                        <p>{this.state.data.Description}</p>
-                        {/*<p>Description of the project: Noa Deane's "Head Noise" is a cinematic surf movie from filmmaker Mikey Mallalieu.</p>*/}
-                        {/*<p>Specifics to what you did: motion graphics</p>*/}
+                {this.state.data.Title &&
+                <div>
+                    <iframe src={this.state.data.Video} frameBorder="0" allowFullScreen id="projectVideo"
+                            className="showReelVideo"/>
+                    <h1>{this.state.data.Title}</h1>
+                    {sessionStorage.getItem("loggedIn") &&
+                    <div className="tools">
+                        <button><a href={`/edit/${this.state.postID}`}>Edit</a></button>
+                        <button
+                            onClick={() => window.confirm("Are you absolutely positive you want to delete this?\nIt will be gone forever.") && this.handleDelete()}>Delete
+                        </button>
                     </div>
-                    <div className="right">
-                        {/*<p style={{textAlign: "center"}}>Clients - Credit</p>*/}
-                        <p>Client: {this.state.data.ClientURL ? <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
-                        {/*<p>Client: <a href="https://www.volcom.com/truetothis/noa-deane/">Noah Dean</a></p>*/}
-                        <p>Tools: {this.state.data.Tools}</p>
+                    }
+                    <p className="roles"><b>Roles: </b>{this.state.data.Roles.map((role) => {
+                        return role
+                    }).join(", ")}</p>
+                    <div className="information">
+                        <div className="left">
+                            <p>{this.state.data.Description}</p>
+                        </div>
+                        <div className="right">
+                            <p>Client: {this.state.data.ClientURL ?
+                                <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
+                            <p>Tools: {this.state.data.Tools}</p>
+                        </div>
                     </div>
-                </div>
 
-                {this.createImages(this.state.data.Images)}
-
-                {sessionStorage.getItem("loggedIn") &&
-                <div className="tools">
-                    <button><a href={`/feed/edit/${this.state.postID}`}>Edit</a></button>
-                    <button onClick={() => window.confirm("Are you absolutely positive you want to delete this?\nIt will be gone forever.") && this.handleDelete()}>Delete</button>
+                    {this.createImages(this.state.data.Images)}
                 </div>
                 }
-                {/*<div style={{float: "left", paddingLeft: "5vw"}}>&lt; Back</div>*/}
             </div>
         )
     }
