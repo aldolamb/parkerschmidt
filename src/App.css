@@ -111,10 +111,41 @@ input[type="radio"]:checked + label {
     /*color: #2546ff;*/
 }
 
+.upload {
+    padding: 4em 0;
+}
 
-.upload input[type=text] {
+.upload input[type=text], .upload textarea {
     width: 30em;
 }
+
+.projectUpload {
+    /*margin: 5em auto;*/
+    border-top: black solid thin;
+}
+
+.uploadImages {
+    width: 30em;
+    margin: auto;
+}
+
+.formUpload .showReelVideo {
+    width: 50vw;
+    height: 23.1vw;
+
+    max-width: 68vh;
+    max-height: 36.2vh;
+
+    min-width: 24vw;
+    min-height: 13.5vw;
+}
+
+.formPreview {
+
+}
+
+
+
 
 /*h1 {*/
     /*width: 100vw;*/
@@ -206,14 +237,6 @@ pre {
     line-height: 1.4;
 }
 
-.upload {
-    padding-bottom: 4em;
-}
-
-.single-form {
-    padding-top: 40vh;
-}
-
 footer {
     letter-spacing: normal;
     color: #aaaaaa;
@@ -246,6 +269,7 @@ footer a:hover {
 }
 .projectPage .roles {
     padding: 2vh 0;
+    letter-spacing: 3px;
     /*text-transform: uppercase;*/
 }
 .projectPage .information {
@@ -259,19 +283,73 @@ footer a:hover {
     letter-spacing: normal;
     text-align: left;
 }
-.projectPage .left, .projectPage .right {
+.projectPage .information a {
+    text-decoration: underline;
+}
+.left, .right {
     width: 50%;
     padding: 0 5%;
     margin: auto 0;
     box-sizing: border-box;
 }
-.projectPage .left {
+.left {
     float: left;
     /*border-right: #aaaaaa solid thin;*/
 }
-.projectPage .right {
+.right {
     float: right;
 }
+
+header .parkerSchmidt {
+    float: left;
+}
+
+header .socialIcons {
+    float: right;
+    padding-top: .25em;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 
 @media only screen and (min-width: 768px) {
@@ -281,6 +359,13 @@ footer a:hover {
 @media only screen and (max-width: 768px) {
     .filters { display: none; }
     footer * { width: 100vw; margin: 1em auto;}
+    .projectPage .left, .projectPage .right { width: 100%; }
+}
+
+@media only screen and (max-width: 420px) {
+    header .parkerSchmidt { float: none; text-align: center; }
+    header .socialIcons { display: none; }
+    .main .showReelVideo { display: none; }
 }
 
 

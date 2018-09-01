@@ -5,10 +5,10 @@ import './App.css';
 import firebase from "firebase";
 import { Main } from "./main";
 import { Header } from "./header";
-import { Footer } from "./footer";
 import { Project } from "./project";
-import { Edit } from "./edit";
 import { Login } from "./login";
+import { Upload } from "./upload";
+import { Edit } from "./edit";
 
 const config = {
     apiKey: "AIzaSyAZziublbH4L5O0uxy3bDJUeAXFS6Eulhc",
@@ -27,13 +27,13 @@ export class App extends Component {
                 <Header/>
                 <Router>
                     <Switch>
-                        <Route path='/projects/:postID' component={Project} />
                         <Route path='/edit/:postID'     component={Edit} />
+                        <Route path='/upload'           component={Upload}/>
                         <Route path='/login'            component={Login} />
+                        <Route path='/:postID'          component={Project} />
                         <Route path='/'                 component={Main} />
                     </Switch>
                 </Router>
-                <Footer/>
             </div>
         )
     }

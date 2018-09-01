@@ -1,7 +1,5 @@
 import React from "react";
-import Instagram from "./icons/instagram.svg";
-import Vimeo from "./icons/vimeo.svg";
-import Mail from "./icons/mail.svg";
+import { Footer } from "./footer";
 const firebase = require("firebase");
 
 const filters = [
@@ -27,14 +25,6 @@ export class Main extends React.Component {
         };
     }
 
-    // componentDidMount() {
-    //     window.addEventListener('scroll', this.onScroll, false);
-    // }
-    //
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.onScroll, false);
-    // }
-    //
     componentWillMount() {
         this.loadFeed();
     }
@@ -44,7 +34,7 @@ export class Main extends React.Component {
         self.setState({isLoaded: false});
 
         const data = [];
-        firebase.firestore().collection("posts").orderBy('Date', 'desc').get().then(snapshot => {
+        firebase.firestore().collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
             let lastVisible = snapshot.docs.length ? snapshot.docs[snapshot.docs.length - 1].data().Date : "";
             snapshot.forEach(doc => {
                 let temp = doc.data();
@@ -128,8 +118,8 @@ export class Main extends React.Component {
                     <div>{new Date(item["Date"]).toLocaleString()}</div>
                 </div>
                 }
-                <a key={item.Title} href={`/projects/${item.key}`}>
-                    <img src={item.Image} alt={item.Title} className="image"/>
+                <a key={item.Title} href={`/${item.key}`}>
+                    <img src={item.CoverImage} alt={item.Title} className="image"/>
                     <div className="overlay">
                         <div className="text">
                             <h2>{item.Title}</h2>
@@ -184,6 +174,8 @@ export class Main extends React.Component {
                 <div className="posts">
                     {Object.values(this.state.data).map(this.createPosts)}
                 </div>
+
+                <Footer/>
             </div>
         );
     }
