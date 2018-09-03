@@ -39,7 +39,7 @@ export class Edit extends React.Component {
         let video = document.getElementById('uploadVideo').value;
         if(video.indexOf('src=') !== -1) {
             video = video.substring(video.indexOf('src='));
-            video = video.substring(5, video.indexOf(' '));
+            video = video.substring(5, video.indexOf(' ')-1);
         }
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;

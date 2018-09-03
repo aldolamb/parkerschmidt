@@ -1,5 +1,7 @@
 import React from "react";
 import { Footer } from "./footer";
+import bodymovin from 'bodymovin'
+import animationData from './data.json'
 const firebase = require("firebase");
 
 const filters = [
@@ -25,6 +27,12 @@ export class Main extends React.Component {
         };
     }
 
+    animationIsAttached = false;
+
+    componentDidMount () {
+        this.attachAnimation()
+    }
+
     componentWillMount() {
         this.loadFeed();
     }
@@ -43,6 +51,9 @@ export class Main extends React.Component {
             });
             self.setState({data: data});
             self.setState({lastVisible: lastVisible, isLoaded: true});
+            let element = document.getElementById("loadingScreen");
+            // element.style.opacity = "0";
+            setTimeout(element.parentNode.removeChild(element))
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -136,13 +147,45 @@ export class Main extends React.Component {
         this.setState({filter: filter});
     }
 
+    attachAnimation = () => {
+        if (this.animationContainer !== undefined && !this.animationIsAttached) {
+            const animationProperties = {
+                container: this.animationContainer,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                animationData: animationData
+            };
+
+            bodymovin.loadAnimation(animationProperties);
+        }
+    };
+
     render() {
         return (
             <div className="main">
-                <iframe className="showReelVideo" src="https://player.vimeo.com/video/271950505?title=0&byline=0&portrait=0"
+                <div id="loadingScreen" className="loadingScreen">
+                    <div style={{width: "20vw", height: "20vh", margin: 'auto', paddingTop: "50vh"}} ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
+                </div>
+                <iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"
                             frameBorder="0" allowFullScreen/>
-
                 <form className="filters" action="">
+                    {/*<input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>*/}
+                    {/*<label htmlFor="filter-1">All</label>|*/}
+
+                    {/*<input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Motion Graphics")}/>*/}
+                    {/*<label htmlFor="filter-2">Motion Graphics</label>|*/}
+
+                    {/*<input type="radio" id="filter-5" name="jeff" onClick={() => this.handleFilterClick("Designer")}/>*/}
+                    {/*<label htmlFor="filter-5">Design</label>|*/}
+
+                    {/*<input type="radio" id="filter-4" name="jeff" onClick={() => this.handleFilterClick("VFX")}/>*/}
+                    {/*<label htmlFor="filter-4">VFX</label>|*/}
+
+                    {/*<input type="radio" id="filter-8" name="jeff" onClick={() => this.handleFilterClick("Filmr")}/>*/}
+                    {/*<label htmlFor="filter-8" style={{borderRight: "none"}}>Film</label>*/}
+
+
                     <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
                         <label htmlFor="filter-1">All</label>|
 

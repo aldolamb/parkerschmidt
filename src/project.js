@@ -65,6 +65,7 @@ export class Project extends React.Component {
                     <p className="roles"><b>Roles: </b>{this.state.data.Roles.map((role) => {
                         return role
                     }).join(", ")}</p>
+                    <p style={{margin: 0}}>{this.state.data.Tools}</p>
                     <div className="information">
                         <div className="left">
                             <p>{this.state.data.Description}</p>
@@ -72,7 +73,6 @@ export class Project extends React.Component {
                         <div className="right">
                             <p>Client: {this.state.data.ClientURL ?
                                 <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
-                            <p>Tools: {this.state.data.Tools}</p>
                         </div>
                     </div>
 

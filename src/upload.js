@@ -2,14 +2,44 @@ import React from 'react';
 const firebase = require("firebase");
 
 export class Upload extends React.Component {
+
+    loadThumbnail(url) {
+        // axios.post("http://vimeo.com/api/oembed.json?url=" + url)
+        //     .then(results => {
+        //         console.log(results);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        let thumbnail_url = '';
+
+        fetch("http://vimeo.com/api/oembed.json?url=" + url)
+            .then(response => response.json())
+            .then(results => {
+                thumbnail_url = results["thumbnail_url"];
+                // if (thumbnail_url.indexOf('_') !== -1)
+                    // thumbnail_url = thumbnail_url.replace('_', '');
+                // thumbnail_url = thumbnail_url.replace(thumbnail_url.substring(thumbnail_url.indexOf('_')), '.jpg');
+                thumbnail_url = thumbnail_url.substring(0, thumbnail_url.indexOf('_'));
+                console.log(thumbnail_url);
+                document.getElementById('uploadCoverImage').value = thumbnail_url;
+                // return thumbnail_url;
+            });
+    }
+
     async handleSubmit(e) {
         const date = Date.now();
         const image = document.getElementById('uploadCoverImage').value.replace("google.com/open", "google.com/uc");
         const title = document.getElementById('uploadTitle').value;
         const url = document.getElementById('uploadTitle').value.toLowerCase().replace(/[^\w\s]/gi, '').trim().split(" ").join("-");
         let video = document.getElementById('uploadVideo').value;
-        video = video.substring(video.indexOf('src='));
-        video = video.substring(5, video.indexOf(' '));
+        console.log(video.indexOf('src='))
+        if (video.indexOf('src=') !== -1) {
+            video = video.substring(video.indexOf('src='));
+            video = video.substring(5, video.indexOf(' ') - 1);
+        }
+        this.loadThumbnail(video);
+        // console.log("Test: " + test);
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;
         const tools = document.getElementById('uploadTools').value;
@@ -30,20 +60,20 @@ export class Upload extends React.Component {
         const self = this;
         e.preventDefault();
 
-        firebase.firestore().collection("projects").doc(url).set({
-            Date: date,
-            CoverImage: image,
-            Title: title,
-            Video: video,
-            Client: client,
-            ClientURL: clientURL,
-            Tools: tools,
-            Description: description,
-            Roles,
-            Images,
-        }).then(() => {
-            self.props.history.push(`/${url}`)
-        });
+        // firebase.firestore().collection("projects").doc(url).set({
+        //     Date: date,
+        //     CoverImage: image,
+        //     Title: title,
+        //     Video: video,
+        //     Client: client,
+        //     ClientURL: clientURL,
+        //     Tools: tools,
+        //     Description: description,
+        //     Roles,
+        //     Images,
+        // }).then(() => {
+        //     self.props.history.push(`/${url}`)
+        // });
     }
 
     // fileSelectedHandler = event => {
@@ -166,6 +196,16 @@ export class Upload extends React.Component {
                         <br/>Filmer<input type="checkbox" name="upload7" id="Filmer" value="Filmer"/>
                         <br/>Illustrator<input type="checkbox" name="upload8" id="Illustrator" value="Illustrator"/>
                     </div>
+
+                    <div>
+                        Tools
+                        <br/>Photoshop<input type="checkbox" name="upload1" id="Photoshop" value="Photoshop"/>
+                        <br/>After Effects<input type="checkbox" name="upload2" id="AfterEffects" value="AfterEffects"/>
+                        <br/>Premiere<input type="checkbox" name="upload3" id="VFX" value="VFX"/>
+                        <br/>Illustrator<input type="checkbox" name="upload4" id="Designer" value="Designer"/>
+                        <br/>Reason<input type="checkbox" name="upload5" id="Director" value="Director"/>
+                    </div>
+
                     <div className="projectUpload">
                         <div style={{paddingTop: "2em"}}>
                             <label htmlFor="uploadVideo" onClick={() =>
