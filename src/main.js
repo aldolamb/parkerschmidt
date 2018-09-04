@@ -1,7 +1,8 @@
 import React from "react";
 import { Footer } from "./footer";
 import bodymovin from 'bodymovin'
-import animationData from './data.json'
+// import animationData from './data.json'
+import animationData from './newOpeningAnimation.json'
 const firebase = require("firebase");
 
 const filters = [
@@ -53,7 +54,7 @@ export class Main extends React.Component {
             self.setState({lastVisible: lastVisible, isLoaded: true});
             let element = document.getElementById("loadingScreen");
             // element.style.opacity = "0";
-            setTimeout(element.parentNode.removeChild(element))
+            setTimeout(function(){ element.parentNode.removeChild(element) }, 1000);
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -118,25 +119,26 @@ export class Main extends React.Component {
         <div key={item.Date + "-wrapper"}>
             {(item.Roles.includes(this.state.filter) || this.state.filter === "All") &&
             <div key={item.Date} className="container">
-                {sessionStorage.getItem("loggedIn") &&
-                <div className="toolbar">
-                    <a style={{float: "left"}} href={`./edit/${item.key}`}>edit</a>
-                    <div style={{float: "right", cursor: "pointer"}} onClick={() =>
-                        window.confirm("are you sure you want to delete this") &&
-                        firebase.firestore().collection("posts").doc(item.key).delete().then(() => {
-                            this.props.history.push('/');
-                        })}>delete</div>
-                    <div>{new Date(item["Date"]).toLocaleString()}</div>
-                </div>
-                }
-                <a key={item.Title} href={`/${item.key}`}>
+                {/*{sessionStorage.getItem("loggedIn") &&*/}
+                {/*<div className="toolbar">*/}
+                    {/*<a style={{float: "left"}} href={`./edit/${item.key}`}>edit</a>*/}
+                    {/*<div style={{float: "right", cursor: "pointer"}} onClick={() =>*/}
+                        {/*window.confirm("are you sure you want to delete this") &&*/}
+                        {/*firebase.firestore().collection("posts").doc(item.key).delete().then(() => {*/}
+                            {/*this.props.history.push('/');*/}
+                        {/*})}>delete</div>*/}
+                    {/*<div>{new Date(item["Date"]).toLocaleString()}</div>*/}
+                {/*</div>*/}
+                {/*}*/}
+                <a className="projectPreview" key={item.Title} href={`/${item.key}`}>
                     <img src={item.CoverImage} alt={item.Title} className="image"/>
-                    <div className="overlay">
+                    <div className="overlay2">
                         <div className="text">
                             <h2>{item.Title}</h2>
                             <pre>{item.Roles.map((e) => {return e}).join("\n")}</pre>
                         </div>
                     </div>
+                    <div className="overlayPic"/>
                 </a>
             </div>
             }
@@ -165,7 +167,8 @@ export class Main extends React.Component {
         return (
             <div className="main">
                 <div id="loadingScreen" className="loadingScreen">
-                    <div style={{width: "20vw", height: "20vh", margin: 'auto', paddingTop: "50vh"}} ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
+                    <div className="loadingScreenIcon"
+                         ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
                 </div>
                 <iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"
                             frameBorder="0" allowFullScreen/>
