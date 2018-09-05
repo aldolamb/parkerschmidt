@@ -168,10 +168,10 @@ a {
     color: black;
 }
 
-.posts {
-    width: 800px;
-    margin: auto;
-}
+/*.posts {*/
+    /*width: 800px;*/
+    /*margin: auto;*/
+/*}*/
 
 .container2 {
     position: relative;
@@ -502,6 +502,7 @@ li {
 @media only screen and (max-width: 768px) {
     .filters { display: none; }
     footer * { width: 100vw; margin: 1em auto;}
+    .overlay2 {display: none;}
     .projectPage .left, .projectPage .right { width: 100%; }
 }
 
