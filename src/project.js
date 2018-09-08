@@ -36,12 +36,11 @@ export class Project extends React.Component {
         });
     }
 
-    createImages = (item) => (
+    createClips = (item) => (
         <div>
-            {item && item.map((image) =>
-            <div key={image} className="container">
-                <iframe src={image} frameBorder="0"/>
-                <img src={image} alt="" className="image"/>
+            {item && item.map((clip, index) =>
+            <div key={this.state.postID + "clip" + index} className="clip" style={{height: (this.state.data.Ratio*304) + "px"}}>
+                <iframe src={clip} frameBorder="0"/>
             </div>
             )}
         </div>
@@ -63,27 +62,25 @@ export class Project extends React.Component {
                         </button>
                     </div>
                     }
-                    <p className="roles">{this.state.data.Roles.map((role) => {
+                    <p className="roles">Roles: {this.state.data.Roles.map((role) => {
                         return role
                     }).join(", ")}</p>
-                    {/*<p className="roles"><b>Roles: </b>{this.state.data.Roles.map((role) => {*/}
-                        {/*return role*/}
-                    {/*}).join(", ")}</p>*/}
-                    <p className="tools">{this.state.data.Tools.map((tool) => {
-                        return <li className={tool} id={tool}/>
-                    })}</p>
+
+
                     {/*<p style={{margin: 0}}>{this.state.data.Tools}</p>*/}
                     <div className="information">
-                        <div className="left">
                             <p>{this.state.data.Description}</p>
-                        </div>
-                        <div className="right">
                             <p>Client: {this.state.data.ClientURL ?
                                 <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
-                        </div>
+                                <p style={{margin: "0 auto"}}>Programs Used:</p>
+                                <p style={{margin: "0 auto"}}>{this.state.data.Tools.map((tool) => {
+                                    return <li className={tool} key={tool}/>
+                                })}</p>
                     </div>
 
-                    {this.createImages(this.state.data.Images)}
+                    <div className="clips">
+                        {this.createClips(this.state.data.Clips)}
+                    </div>
                 </div>
                 }
             </div>

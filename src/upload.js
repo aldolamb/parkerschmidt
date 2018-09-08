@@ -1,5 +1,7 @@
 import React from 'react';
 const firebase = require("firebase");
+// const functions = require('firebase-functions');
+// const getData = functions.httpsCallable('helloWorld');
 
 export class Upload extends React.Component {
 
@@ -11,6 +13,13 @@ export class Upload extends React.Component {
         //     .catch(function (error) {
         //         console.log(error);
         //     });
+        // console.log("ran")
+        // getData().then(function(result) {
+        //     // Read result of the Cloud Function.
+        //     // var sanitizedMessage = result.data.text;
+        //     alert(result);
+        //     // ...
+        // });
 
         if (url) {
             const embedURL = "https://player.vimeo.com/video/" + url.substring(url.indexOf(".com/") + 5);
@@ -43,6 +52,8 @@ export class Upload extends React.Component {
     }
 
     async handleSubmit(e) {
+        e.preventDefault();
+
         const date = Date.now();
         const image = document.getElementById('uploadCoverImage').value.replace("google.com/open", "google.com/uc");
         const title = document.getElementById('uploadTitle').value;
@@ -60,7 +71,7 @@ export class Upload extends React.Component {
         const description = document.getElementById('uploadDescription').value;
         const checkedRoles = document.querySelectorAll("input[name^='uploadRoles']:checked");
         const checkedTools = document.querySelectorAll("input[name^='uploadTools']:checked");
-        const images = document.querySelectorAll("input[name^='image']");
+        const clips = document.querySelectorAll("input[name^='clip']");
 
         let Roles = [];
         for (let item of checkedRoles) {
@@ -72,13 +83,12 @@ export class Upload extends React.Component {
             Tools.push(item.value);
         }
 
-        let Images = [];
-        for (let item of images) {
-            Images.push(item.value);
+        let Clips = [];
+        for (let item of clips) {
+            Clips.push(item.value);
         }
 
         const self = this;
-        e.preventDefault();
 
         firebase.firestore().collection("projects").doc().set({
             Date: date,
@@ -88,26 +98,28 @@ export class Upload extends React.Component {
             Client: client,
             ClientURL: clientURL,
             Description: description,
+            Ratio: 0.5625,
             Roles,
             Tools,
-            Images,
+            Clips,
         }).then(() => {
             self.props.history.push(`/`)
         });
     }
 
-    addImage = () => {
+    addClip = () => {
         // Adds an element to the document
-        let p = document.getElementById("uploadImages");
+        let p = document.getElementById("uploadClips");
         let newElement = document.createElement("input");
-        newElement.setAttribute('id', "image"+(p.childElementCount+1));
+        newElement.setAttribute('id', "clip"+(p.childElementCount+1));
+        newElement.setAttribute('name', 'clip');
         newElement.setAttribute('type', "text");
         p.appendChild(newElement);
     };
 
-    removeImage = () => {
+    removeClip = () => {
         // Removes an element from the document
-        let el = document.getElementById("uploadImages");
+        let el = document.getElementById("uploadClips");
         if (el.childElementCount)
             el.removeChild(el.children[el.childElementCount-1]);
         else
@@ -149,14 +161,11 @@ export class Upload extends React.Component {
 
                     <div>
                         Roles
-                        <br/>Motion Graphics<input type="checkbox" name="uploadRoles" id="Motion Graphics" value="Motion Graphics"/>
-                        <br/>Compositing<input type="checkbox" name="uploadRoles" id="Compositing" value="Compositing"/>
+                        <br/>Animation<input type="checkbox" name="uploadRoles" id="Animation" value="Animation"/>
                         <br/>VFX<input type="checkbox" name="uploadRoles" id="VFX" value="VFX"/>
-                        <br/>Designer<input type="checkbox" name="uploadRoles" id="Designer" value="Designer"/>
-                        <br/>Director<input type="checkbox" name="uploadRoles" id="Director" value="Director"/>
-                        <br/>Editor<input type="checkbox" name="uploadRoles" id="Editor" value="Editor"/>
-                        <br/>Filmer<input type="checkbox" name="uploadRoles" id="Filmer" value="Filmer"/>
-                        <br/>Illustrator<input type="checkbox" name="uploadRoles" id="Illustrator" value="Illustrator"/>
+                        <br/>Design<input type="checkbox" name="uploadRoles" id="Design" value="Design"/>
+                        <br/>Film<input type="checkbox" name="uploadRoles" id="Film" value="Film"/>
+                        <br/>Sound<input type="checkbox" name="uploadRoles" id="Sound" value="Sound"/>
                     </div>
 
                     <div>
@@ -194,11 +203,11 @@ export class Upload extends React.Component {
 
                     <div>
                         Clips
-                        <div id="uploadImages" className="uploadImages">
-                            <input type="text" id="image1" name="Tools"/>
+                        <div id="uploadClips" className="uploadImages">
+                            <input type="text" id="clip1" name="clip"/>
                         </div>
-                        <button type="button" onClick={() => this.addImage()}>+</button>
-                        <button type="button" onClick={() => this.removeImage()}>-</button>
+                        <button type="button" onClick={() => this.addClip()}>+</button>
+                        <button type="button" onClick={() => this.removeClip()}>-</button>
                     </div>
 
                     <button type="submit">Upload</button>

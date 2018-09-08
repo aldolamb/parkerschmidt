@@ -3,6 +3,25 @@
     src: url("fonts/Gotham-Book (1).otf");
 }
 
+@font-face {
+    font-family: "Gotham-Medium";
+    src: url("fonts/Gotham-Medium.otf");
+}
+
+@-webkit-keyframes colorChange {
+    0% { background-color: #ffffff; }
+    33% { background-color: #fef4ff; }
+    67% { background-color: #d1dff9; }
+    100% { background-color: #ffffff; }
+}
+
+@keyframes colorChange {
+    0% { background-color: #ffffff; }
+    33% { background-color: #fef4ff; }
+    67% { background-color: #d1dff9; }
+    100% { background-color: #ffffff; }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -10,8 +29,20 @@ body {
     letter-spacing: 5px;
     box-sizing: content-box;
     font-family: 'Gotham', 'Montserrat', sans-serif;
-    background: repeating-linear-gradient(to bottom, #ffffff, #fef4ff, #d1dff9, #ffffff);
-    background-size: 100% 300em;
+
+    animation: colorChange 150s infinite; /* animation-name followed by duration in seconds*/
+    /* you could also use milliseconds (ms) or something like 2.5s */
+    -webkit-animation: colorChange 150s infinite;
+
+    /*-webkit-animation: background 50s cubic-bezier(1,0,0,1) infinite;*/
+    /*animation: background 18s cubic-bezier(1,0,0,1) infinite;*/
+    /*background-color: black;*/
+    /*-webkit-animation-name: colorChange;*/
+    /*-webkit-animation-iteration-count: infinite;*/
+    /*-webkit-animation-duration: 2s;*/
+
+    /*background: repeating-linear-gradient(to bottom, #ffffff, #fef4ff, #d1dff9, #ffffff);*/
+    /*background-size: 100% 300em;*/
     /*background-repeat: no-repeat;*/
 }
 
@@ -58,16 +89,19 @@ header img {
     letter-spacing: 0;
     width: max-content;
     max-width: 100vw;
-    line-height: 11vh;
-    /*height: 11vh;*/
+    height: 11vh;
     margin: auto;
-    /*margin: 3.5vh auto 5vh;*/
     font-size: .95em;
     display: inline-block;
 }
 
 .filters, .filters * { cursor: pointer;}
-.filters div { display: inline}
+
+.filters div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 label {
     display: inline-block;
@@ -168,10 +202,91 @@ a {
     color: black;
 }
 
-/*.posts {*/
-    /*width: 800px;*/
-    /*margin: auto;*/
+.posts {
+    max-width: 100vw;
+    width: 940px;
+    margin: auto;
+}
+
+.posts p {
+    font-size: .9em;
+    letter-spacing: 1px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.posts > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.posts .postContainer {
+
+    width: 450px;
+    max-width: 100vw;
+    padding: 10px;
+}
+
+.postContainer a, .postContainer img {
+    width: inherit;
+}
+
+.postContainer h4 {
+    font-weight: normal;
+    /*height: 10px;*/
+    /*margin-top: 10px*/
+    margin: 10px;
+    letter-spacing: 1px;
+    font-family: 'Gotham-Medium', 'Montserrat', sans-serif;
+}
+
+.posts a {
+    width: inherit;
+    /*height: 300px;*/
+}
+
+/*.posts > div {*/
+    /*width: 400px;*/
+    /*padding: 10px;*/
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
 /*}*/
+
+/*.posts .postContainer, .posts a {*/
+    /*width: inherit;*/
+    /*height: 325px;*/
+/*}*/
+
+.posts img {
+    /*width: 450px;*/
+    height: 252px;
+    max-height: 56vw;
+    /*.56*/
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 470px) {
+    /*.posts {*/
+        /*width: 100%;*/
+    /*}*/
+    /*.posts > div {*/
+        /*width: 100%;*/
+        /*padding: 10px 0;*/
+    /*}*/
+    .posts .postContainer {
+        padding: 0 0 10px;
+    }
+    /*.posts .postContainer, .posts a {*/
+        /*width: inherit;*/
+        /*height: fit-content;*/
+        /*padding: 0;*/
+        /*!*height: 81.25vw;*!*/
+    /*}*/
+    /*.posts img {*/
+        /*width: 100vw;*/
+        /*height: 56.25vw;*/
+    /*}*/
+}
 
 .container2 {
     position: relative;
@@ -239,6 +354,10 @@ a {
     color: white;
     /*background-color: rgba(0, 0, 0, 1);*/
     /*background-color: #008CBA;*/
+}
+
+.postContainer:hover img {
+    opacity: .8;
 }
 
 .container:hover .overlay {
@@ -358,19 +477,22 @@ footer a:hover {
 .projectPage h1 {
     font-size: 2em;
     font-weight: normal;
-    padding-top: 3vh;
+    /*padding-top: 3vh;*/
+    line-height: 11vh;
     /*line-height: 10vh;*/
     /*padding: 0;*/
+    letter-spacing: 0;
+    font-family: 'Gotham-Medium', 'Montserrat', sans-serif;
     margin: auto;
 }
 .projectPage .roles {
-    padding: 2vh 0 0;
-    letter-spacing: 3px;
+    padding: 0 0 2vh;
+    letter-spacing: 0;
     /*text-transform: uppercase;*/
 }
 .projectPage .information {
-    width: 90vw;
-    max-width: 136vh;
+    width: 912px;
+    max-width: 100vw;
 
     border-top: #aaaaaa solid thin;
     box-sizing: border-box;
@@ -446,10 +568,27 @@ header .socialIcons {
     cursor: pointer;
 }
 
+.clips {
+    width: 912px;
+    margin: auto;
+}
+.clip {
+    width: 304px;
+    height: 171px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.clip * {
+    width: inherit;
+    height: inherit;
+}
+
 .loadingScreen {
     position: fixed;
-    background-color: black;
+    background-color: white;
     /*width: 120vw;*/
+    color: black;
     width: 100vw;
     /*height: 120vh;*/
     height: 100vh;
@@ -461,8 +600,8 @@ header .socialIcons {
     /*left: -10vw;*/
     z-index: 1;
 
-    -webkit-transition: all .2s ease-out; /* For Safari 3.1 to 6.0 */
-    transition: all .2s ease-out;
+    -webkit-transition: all .5s ease-out; /* For Safari 3.1 to 6.0 */
+    transition: all .5s ease-out;
 
     /*-webkit-transition: opacity 1s linear 0s, display 0s linear 1s; !* For Safari 3.1 to 6.0 *!*/
     /*transition: opacity 1s linear 0s, display, 0s linear 1s;*/
@@ -500,10 +639,19 @@ li {
 }
 
 @media only screen and (max-width: 768px) {
-    .filters { display: none; }
+    /*.filters { display: none; }*/
     footer * { width: 100vw; margin: 1em auto;}
     .overlay2 {display: none;}
     .projectPage .left, .projectPage .right { width: 100%; }
+}
+
+@media only screen and (max-width: 470px) {
+    .filters { display: none; }
+    .showReelVideo { padding-bottom: 11vh; }
+    body {
+        animation: colorChange 50s infinite;
+        -webkit-animation: colorChange 50s infinite;
+    }
 }
 
 @media only screen and (max-width: 420px) {

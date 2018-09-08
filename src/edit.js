@@ -19,12 +19,12 @@ export class Edit extends React.Component {
         firebase.firestore().collection("projects").doc(this.state.postID).get().then(snapshot => {
             self.setState({data: snapshot.data()});
             this.state.data.Roles.map((e) => document.getElementById(e).checked = true);
-            this.state.data.Images.map((e) =>
+            this.state.data.Clips.map((e) =>
             {
-                let p = document.getElementById("uploadImages");
+                let p = document.getElementById("uploadClips");
                 let newElement = document.createElement("input");
-                newElement.setAttribute('id', "image"+(p.childElementCount+1));
-                newElement.setAttribute('name', "image");
+                newElement.setAttribute('id', "clip"+(p.childElementCount+1));
+                newElement.setAttribute('name', "clip");
                 newElement.setAttribute('type', "text");
                 newElement.setAttribute('value', e);
                 p.appendChild(newElement);
@@ -36,44 +36,51 @@ export class Edit extends React.Component {
     }
 
     async handleSubmit(e) {
+        e.preventDefault();
+
         let video = document.getElementById('uploadVideo').value;
         if(video.indexOf('src=') !== -1) {
             video = video.substring(video.indexOf('src='));
             video = video.substring(5, video.indexOf(' ')-1);
         }
+        const image = document.getElementById('editCoverImage').value;
+        const title = document.getElementById('uploadTitle').value;
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;
-        const tools = document.getElementById('uploadTools').value;
         const description = document.getElementById('uploadDescription').value;
-        const checkBoxes = document.querySelectorAll("input[name^='upload']:checked");
-        const images = document.querySelectorAll("input[name='image']");
+        const checkedRoles = document.querySelectorAll("input[name^='uploadRoles']:checked");
+        const checkedTools = document.querySelectorAll("input[name^='uploadTools']:checked");
+        const clips = document.querySelectorAll("input[name^='clip']");
 
         let Roles = [];
-        for (let item of checkBoxes) {
+        for (let item of checkedRoles) {
             Roles.push(item.value);
         }
 
-        let Images = [];
-        for (let item of images) {
-            Images.push(item.value);
+        let Tools = [];
+        for (let item of checkedTools) {
+            Tools.push(item.value);
         }
 
-        console.log(Images);
+        let Clips = [];
+        for (let item of clips) {
+            Clips.push(item.value);
+        }
 
         const self = this;
-        e.preventDefault();
 
         firebase.firestore().collection("projects").doc(self.state.postID).set({
             Date: self.state.data.Date,
-            CoverImage: self.state.data.CoverImage,
-            Title: self.state.data.Title,
+            CoverImage: image,
+            Title: title,
             Video: video,
             Client: client,
             ClientURL: clientURL,
-            Tools: tools,
             Description: description,
+            Ratio: 0.5625,
             Roles,
-            Images,
+            Tools,
+            Clips,
         }).then(() => {
             self.props.history.push(`/${self.state.postID}`)
         });
@@ -85,101 +92,78 @@ export class Edit extends React.Component {
         this.setState({data: dataCopy});
     }
 
-    addImage = () => {
+    addClip = () => {
         // Adds an element to the document
-        let p = document.getElementById("uploadImages");
+        let p = document.getElementById("uploadClips");
         let newElement = document.createElement("input");
-        newElement.setAttribute('id', "image"+(p.childElementCount+1));
-        newElement.setAttribute('name', "image");
+        newElement.setAttribute('id', "clip"+(p.childElementCount+1));
+        newElement.setAttribute('name', 'clip');
         newElement.setAttribute('type', "text");
         p.appendChild(newElement);
     };
 
-    removeImage = () => {
+    removeClip = () => {
         // Removes an element from the document
-        let el = document.getElementById("uploadImages");
+        let el = document.getElementById("uploadClips");
         if (el.childElementCount)
             el.removeChild(el.children[el.childElementCount-1]);
         else
             console.log("it works");
     };
 
+
     render() {
         return (
             <div className="upload">
-                {/*<form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">*/}
-                    {/*<div className="form-group">*/}
-                        {/*<label htmlFor="title">Title</label>*/}
-                        {/*<input type="text" className="form-control" id="title" autoComplete="off" required*/}
-                               {/*name="Title" value={this.state.data.Title} onChange={(value) => this.onChange(value)}/>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group">*/}
-                        {/*<label htmlFor="email">Image</label>*/}
-                        {/*<input type="text" className="form-control" id="image" aria-describedby="emailHelp" required*/}
-                               {/*name="Image" value={this.state.data.Image} onChange={(value) => this.onChange(value)}/>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group">*/}
-                        {/*<label htmlFor="email">Url</label>*/}
-                        {/*<input type="text" className="form-control" id="url" aria-describedby="emailHelp" required*/}
-                               {/*name="URL" value={this.state.data.URL} onChange={(value) => this.onChange(value)}/>*/}
-                    {/*</div>*/}
+                <form onSubmit={this.handleSubmit.bind(this)} method="POST">
+                    <div>
+                        <label htmlFor="uploadVideo" onClick={() =>
+                            window.alert("This is the video of the project for the project page. For Vimeo, have 'fixed size' selected." +
+                                "You can also choose loop, autoplay, or a color too but have everything else deselected. For Youtube, select any of the options.")}>Video</label>
+                        <input type="text" id="uploadVideo" required
+                               name="Video" value={this.state.data.Video} onChange={(value) => this.onChange(value)}/>
+                    </div>
 
-                    {/*<div>*/}
-                        {/*<br/>Motion Graphics<input type="checkbox" name="vehicle1" id="Motion Graphics" value="Motion Graphics"/>*/}
-                        {/*<br/>Compositing<input type="checkbox" name="vehicle2" id="Compositing" value="Compositing"/>*/}
-                        {/*<br/>VFX<input type="checkbox" name="vehicle3" id="VFX" value="VFX"/>*/}
-                        {/*<br/>Designer<input type="checkbox" name="vehicle4" id="Designer" value="Designer"/>*/}
-                        {/*<br/>Director<input type="checkbox" name="vehicle5" id="Director" value="Director"/>*/}
-                        {/*<br/>Editor<input type="checkbox" name="vehicle6" id="Editor" value="Editor"/>*/}
-                        {/*<br/>Filmer<input type="checkbox" name="vehicle7" id="Filmer" value="Filmer"/>*/}
-                        {/*<br/>Illustrator<input type="checkbox" name="vehicle8" id="Illustrator" value="Illustrator"/>*/}
-                    {/*</div>*/}
-
-                    {/*<button type="submit" className="btn btn-primary">Update</button>*/}
-                {/*</form>*/}
-                <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} method="POST">
-                    {/*<img id="uploadImagePreview" src="" alt="No Image"/>*/}
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="uploadImage" onClick={() =>
                             window.alert("This is the image shown on the feed. Make the width of the image 500px, " +
                                 "it will be loaded into an area 500px wide so any larger will just be a waste of storage and transfer space. " +
                                 "Try and compress the image as well if possible to reduce file size, only enough where image quality isn't sacrificed.")}>Image</label>
-                        {/*<div className="toolBar">*/}
-                        {/*<label><input onChange={this.fileSelectedHandler} type="file" className="form-control" id="file"/></label>*/}
-                        {/*<button type="button" onClick= {this.fileUploadHandler}>Add Image</button>*/}
-                        {/*</div>*/}
-                        <input type="text" className="form-control" id="editCoverImage" autoComplete="off" required
+                        <input type="text" id="editCoverImage" autoComplete="off" required
                                name="CoverImage" value={this.state.data.CoverImage} onChange={(value) => this.onChange(value)}/>
                     </div>
 
                     <div>
-                        Roles
-                        <br/>Motion Graphics<input type="checkbox" name="upload1" id="Motion Graphics" value="Motion Graphics"/>
-                        <br/>Compositing<input type="checkbox" name="upload2" id="Compositing" value="Compositing"/>
-                        <br/>VFX<input type="checkbox" name="upload3" id="VFX" value="VFX"/>
-                        <br/>Designer<input type="checkbox" name="upload4" id="Designer" value="Designer"/>
-                        <br/>Director<input type="checkbox" name="upload5" id="Director" value="Director"/>
-                        <br/>Editor<input type="checkbox" name="upload6" id="Editor" value="Editor"/>
-                        <br/>Filmer<input type="checkbox" name="upload7" id="Filmer" value="Filmer"/>
-                        <br/>Illustrator<input type="checkbox" name="upload8" id="Illustrator" value="Illustrator"/>
+                        <label htmlFor="uploadTitle" onClick={() =>
+                            window.alert("This is the title of the project. It has to be unique from all other projects")}>
+                            Title
+                        </label>
+                        <input type="text" id="uploadTitle" autoComplete="off" required
+                               name="Title" value={this.state.data.Title} onChange={(value) => this.onChange(value)}/>
                     </div>
 
-                    <div className="projectUpload">
-                        <div style={{paddingTop: "2em"}}>
-                            <label htmlFor="uploadVideo" onClick={() =>
-                                window.alert("This is the video of the project for the project page. For Vimeo, have 'fixed size' selected." +
-                                    "You can also choose loop, autoplay, or a color too but have everything else deselected. For Youtube, select any of the options.")}>Video</label>
-                            <input type="text" className="form-control" id="uploadVideo" required
-                                   name="Video" value={this.state.data.Video} onChange={(value) => this.onChange(value)}/>
-                        </div>
-                        <div>
-                            <label htmlFor="uploadDescription" onClick={() =>
-                                window.alert("A description of the project and further details about what your role(s) on it were. Can be anything though")}>Description</label>
-                            <textarea className="form-control" id="uploadDescription" required
-                                      name="Description" value={this.state.data.Description} onChange={(value) => this.onChange(value)}/>
-                        </div>
+                    <div>
+                        Roles
+                        <br/>Animation<input type="checkbox" name="uploadRoles" id="Animation" value="Animation"/>
+                        <br/>VFX<input type="checkbox" name="uploadRoles" id="VFX" value="VFX"/>
+                        <br/>Design<input type="checkbox" name="uploadRoles" id="Design" value="Design"/>
+                        <br/>Film<input type="checkbox" name="uploadRoles" id="Film" value="Film"/>
+                        <br/>Sound<input type="checkbox" name="uploadRoles" id="Sound" value="Sound"/>
+                    </div>
 
-                        <div style={{paddingTop: "2em"}}>
+                    <div>
+                        Tools
+                        <br/>Adobe After Effects<input type="checkbox" name="uploadTools" id="adobeAfterEffects" value="adobeAfterEffects"/>
+                        <br/>Adobe Illustrator<input type="checkbox" name="uploadTools" id="adobeIllustrator" value="adobeIllustrator"/>
+                        <br/>Adobe Photoshop<input type="checkbox" name="uploadTools" id="adobePhotoshop" value="adobePhotoshop"/>
+                        <br/>Adobe Premiere<input type="checkbox" name="uploadTools" id="adobePremiere" value="adobePremiere"/>
+                        <br/>Analog<input type="checkbox" name="uploadTools" id="analog" value="analog"/>
+                        <br/>Cinema 4D<input type="checkbox" name="uploadTools" id="cinema4D" value="cinema4D"/>
+                        <br/>Reason<input type="checkbox" name="uploadTools" id="reason" value="reason"/>
+                    </div>
+
+                    <div>
+                        <div>
                             <label htmlFor="uploadClient" onClick={() =>
                                 window.alert("Name of the client")}>Client</label>
                             <input type="text" className="form-control" id="uploadClient" required
@@ -188,25 +172,25 @@ export class Edit extends React.Component {
                         <div>
                             <label htmlFor="uploadClientURL" onClick={() =>
                                 window.alert("URL if you want to link to the clients site. This is optional")}>Client URL</label>
-                            <input type="text" className="form-control" id="uploadClientURL"
+                            <input type="text" id="uploadClientURL"
                                    name="ClientURL" value={this.state.data.ClientURL} onChange={(value) => this.onChange(value)}/>
                         </div>
+                    </div>
 
-                        <div style={{paddingTop: "2em"}}>
-                            <label htmlFor="uploadTools" onClick={() =>
-                                window.alert("List of the tools you used: Photoshop, After Effects, etc.... I suggest making it a comma separated list for consistency")}>Tools</label>
-                            <input type="text" className="form-control" id="uploadTools" required
-                                   name="Tools" value={this.state.data.Tools} onChange={(value) => this.onChange(value)}/>
-                        </div>
+                    <div>
+                        <label htmlFor="uploadDescription" onClick={() =>
+                            window.alert("A description of the project and further details about what your role(s) on it were. Can be anything though")}>Description</label>
+                        <textarea id="uploadDescription" required
+                                  name="Description" value={this.state.data.Description} onChange={(value) => this.onChange(value)}/>
+                    </div>
 
-                        <div>
-                            Images
-                            <div id="uploadImages" className="uploadImages">
-                                {/*<input type="text" id="image1" name="Tools"/>*/}
-                            </div>
-                            <button type="button" onClick={() => this.addImage()}>+</button>
-                            <button type="button" onClick={() => this.removeImage()}>-</button>
+                    <div>
+                        Clips
+                        <div id="uploadClips" className="uploadImages">
+                            {/*<input type="text" id="image1" name="Tools"/>*/}
                         </div>
+                        <button type="button" onClick={() => this.addClip()}>+</button>
+                        <button type="button" onClick={() => this.removeClip()}>-</button>
                     </div>
 
                     <button type="submit" className="btn btn-primary">Upload</button>
