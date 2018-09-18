@@ -24,7 +24,7 @@ export class Upload extends React.Component {
         if (url) {
             const embedURL = "https://player.vimeo.com/video/" + url.substring(url.indexOf(".com/") + 5);
 
-            let apiURL = "http://vimeo.com/api/oembed.json?url=" + embedURL;
+            let apiURL = "https://vimeo.com/api/oembed.json?url=" + embedURL;
 
             let thumbnail_url = '';
 

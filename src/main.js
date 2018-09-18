@@ -141,8 +141,10 @@ export class Main extends React.Component {
                 {/*</div>*/}
                 {/*}*/}
                 <a key={item.Title} href={`/${item.key}`}>
-                    <img src={item.CoverImage} alt={item.Title}/>
+                    <img src={item.CoverImage} alt={item.Title} key={"img-"+item.Title}/>
                     <h4>{item.Title}</h4>
+                    {/*<div style={{top: 0, left: 0, width: "100%", height: "252px", background: "red"}}>*/}
+                    {/*</div>*/}
                     {/*<p>{item.Roles.map((e) => {return e}).join(", ")}</p>*/}
                     {/*<div className="overlay2">*/}
                         {/*<div className="text">*/}
