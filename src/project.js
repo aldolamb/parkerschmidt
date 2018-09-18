@@ -64,36 +64,38 @@ export class Project extends React.Component {
                 <div>
                     <iframe src={this.state.data.Video} frameBorder="0" allowFullScreen id="projectVideo"
                             className="showReelVideo"/>
-                    <h1>{this.state.data.Title}</h1>
-                    {sessionStorage.getItem("loggedIn") &&
-                    <div className="tools">
-                        <button><a href={`/edit/${this.state.postID}`}>Edit</a></button>
-                        <button
-                            onClick={() => window.confirm("Are you absolutely positive you want to delete this?\nIt will be gone forever.") && this.handleDelete()}>Delete
-                        </button>
-                    </div>
-                    }
-                    <p className="roles">Roles: {this.state.data.Roles.map((role) => {
-                        return role
-                    }).join(", ")}</p>
+                    <div className="projectInformation">
+                        <h1>{this.state.data.Title}</h1>
+                        {sessionStorage.getItem("loggedIn") &&
+                        <div className="tools">
+                            <button><a href={`/edit/${this.state.postID}`}>Edit</a></button>
+                            <button
+                                onClick={() => window.confirm("Are you absolutely positive you want to delete this?\nIt will be gone forever.") && this.handleDelete()}>Delete
+                            </button>
+                        </div>
+                        }
+                        <p className="roles">Roles: {this.state.data.Roles.map((role) => {
+                            return role
+                        }).join(", ")}</p>
 
-                    <div className="information">
-                            <p>{this.state.data.Description}</p>
-                            <p>Client: {this.state.data.ClientURL ?
-                                <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
-                                <p style={{margin: "0 auto"}}>Programs Used:</p>
-                                <p style={{margin: "0 auto"}}>{this.state.data.Tools.map((tool) => {
-                                    return <li className={tool} key={tool}/>
-                                })}</p>
-                    </div>
+                        <div className="information">
+                                <p>{this.state.data.Description}</p>
+                                <p>Client: {this.state.data.ClientURL ?
+                                    <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
+                                    <p style={{margin: "0 auto"}}>Programs Used:</p>
+                                    <p style={{margin: "0 auto"}}>{this.state.data.Tools.map((tool) => {
+                                        return <li className={tool} key={tool}/>
+                                    })}</p>
+                        </div>
 
-                    <div className="clips">
-                        {this.createClips(this.state.data.Clips)}
-                    </div>
-                    <div className="projectNavigation">
-                        <a id="backArrow">&larr;</a>
-                        <a href="/">HOME</a>
-                        <a id="nextArrow">&rarr;</a>
+                        <div className="clips">
+                            {this.createClips(this.state.data.Clips)}
+                        </div>
+                        <div className="projectNavigation">
+                            <a id="backArrow">&larr;</a>
+                            <a href="/">HOME</a>
+                            <a id="nextArrow">&rarr;</a>
+                        </div>
                     </div>
                 </div>
                 }

@@ -484,18 +484,24 @@ footer a:hover {
     font-family: 'Gotham-Medium', 'Montserrat', sans-serif;
     margin: auto;
 }
+
+.projectPage .projectInformation {
+    width: 912px;
+    max-width: 100vw;
+    margin: auto;
+}
+
 .projectPage .roles {
     padding: 0 0 2vh;
     letter-spacing: 0;
     /*text-transform: uppercase;*/
 }
 .projectPage .information {
-    width: 912px;
-    max-width: 100vw;
 
     border-top: #aaaaaa solid thin;
     box-sizing: border-box;
     margin: 1em auto;
+    max-width: 98vw;
     padding: 1em;
     letter-spacing: normal;
     text-align: left;
@@ -568,7 +574,8 @@ header .socialIcons {
 }
 
 .clips {
-    width: 912px;
+    /*width: 912px;*/
+    /*max-width: 100vw;*/
     margin: auto;
 }
 .clip {
@@ -624,8 +631,6 @@ li {
     width: 25vh;
     height: 25vh;
     position: absolute;
-    /*margin: auto;*/
-    /*padding-top: 50hv*/
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -633,7 +638,8 @@ li {
 
 .projectNavigation {
     padding: 6vh 0;
-    width: 912px;
+    /*width: 912px;*/
+    /*max-width: 100vw;*/
     margin: auto;
 }
 
@@ -659,7 +665,7 @@ li {
 
 @media only screen and (max-width: 470px) {
     .filters { display: none; }
-    .showReelVideo { padding-bottom: 11vh; }
+    /*.showReelVideo { padding-bottom: 11vh; }*/
     body {
         animation: colorChange 50s infinite;
         -webkit-animation: colorChange 50s infinite;
