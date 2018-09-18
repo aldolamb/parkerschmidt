@@ -74,7 +74,6 @@ header {
     display: inline-block;
     width: 100vw;
     padding: 0 5vw;
-    /*margin-top: 1vh;*/
     margin-top: .5vh;
     font-size: 1.4em;
     line-height: 11vh;
@@ -630,6 +629,20 @@ li {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.projectNavigation {
+    padding: 6vh 0;
+    width: 912px;
+    margin: auto;
+}
+
+.projectNavigation * {
+    display: inline-block;
+    width: 33.33%;
+    width: calc(100% / 3);
+    margin: auto;
+    cursor: pointer;
 }
 
 

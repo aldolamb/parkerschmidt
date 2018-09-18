@@ -23,6 +23,17 @@ export class Project extends React.Component {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
+        }).then(() => {
+            const data = [];
+            firebase.firestore().collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
+                snapshot.forEach(doc => {data.push(doc.id);});
+                let length = data.length - 1;
+                let index = data.indexOf(this.state.postID);
+                document.getElementById("nextArrow").href = data[index < length ? index + 1 : 0];
+                document.getElementById("backArrow").href = data[index > 0 ? index - 1 : length];
+            }).catch(err => {
+                    console.log('Error getting documents', err);
+                });
         }).catch(err => {
             console.log('Error getting documents', err);
         });
@@ -66,8 +77,6 @@ export class Project extends React.Component {
                         return role
                     }).join(", ")}</p>
 
-
-                    {/*<p style={{margin: 0}}>{this.state.data.Tools}</p>*/}
                     <div className="information">
                             <p>{this.state.data.Description}</p>
                             <p>Client: {this.state.data.ClientURL ?
@@ -80,6 +89,11 @@ export class Project extends React.Component {
 
                     <div className="clips">
                         {this.createClips(this.state.data.Clips)}
+                    </div>
+                    <div className="projectNavigation">
+                        <a id="backArrow">&larr;</a>
+                        <a href="/">HOME</a>
+                        <a id="nextArrow">&rarr;</a>
                     </div>
                 </div>
                 }
