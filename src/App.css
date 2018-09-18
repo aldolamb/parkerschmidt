@@ -665,7 +665,7 @@ li {
 
 @media only screen and (max-width: 470px) {
     .filters { display: none; }
-    /*.showReelVideo { padding-bottom: 11vh; }*/
+    .main .showReelVideo { padding-bottom: 11vh; }
     body {
         animation: colorChange 50s infinite;
         -webkit-animation: colorChange 50s infinite;
