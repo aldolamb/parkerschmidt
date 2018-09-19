@@ -470,10 +470,6 @@ footer a:hover {
     color: black;
 }
 
-.projectPage p {
-    -webkit-margin-before: 0;
-}
-
 .projectPage, .projectPage * {
     overflow: auto;
 }
@@ -675,6 +671,9 @@ select * {
     /*text-indent: 5px;*/
 }
 
+.projectPage p {
+    -webkit-margin-before: 1vw;
+}
 
 @media only screen and (min-width: 768px) {
     .filters { display: block; }
