@@ -260,6 +260,7 @@ a {
     /*width: 450px;*/
     height: 252px;
     max-height: 56vw;
+    max-width: 100vw;
     /*.56*/
     object-fit: cover;
 }
@@ -469,6 +470,9 @@ footer a:hover {
     color: black;
 }
 
+.projectPage p {
+    -webkit-margin-before: 0;
+}
 
 .projectPage, .projectPage * {
     overflow: auto;
@@ -651,6 +655,26 @@ li {
     cursor: pointer;
 }
 
+.filters select {
+    display: none;
+    /*border:none;*/
+    font-size: 1em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    /*padding: .5em 1em;*/
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
+}
+
+select * {
+    /*text-align-last: center;*/
+    /*text-indent: 5px;*/
+}
+
 
 @media only screen and (min-width: 768px) {
     .filters { display: block; }
@@ -664,8 +688,13 @@ li {
 }
 
 @media only screen and (max-width: 470px) {
-    .filters { display: none; }
-    .main .showReelVideo { padding-bottom: 11vh; }
+    .filters > div { display: none; }
+    .filters { border-top: black solid 1px; width: 50%; height: 0; margin: 5.5vh;}
+    .filters { font-size: .9em}
+    .posts .postContainer {
+        padding: 0 0 20px;
+    }
+    .projectPage h1 { font-size: 1.6em; }
     body {
         animation: colorChange 50s infinite;
         -webkit-animation: colorChange 50s infinite;

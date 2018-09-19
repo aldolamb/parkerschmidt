@@ -209,17 +209,18 @@ export class Main extends React.Component {
                 </div>
                 <iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"
                             frameBorder="0" allowFullScreen/>
+
                 <form className="filters" action="">
-                    <select>
-                        <option value="volvo">All</option>
-                        <option value="saab">Animation</option>
-                        <option value="opel">VFX</option>
-                        <option value="audi">Design</option>
-                        <option value="audi">Film</option>
-                        <option value="audi">Sound</option>
-                    </select>
+                    {/*<select>*/}
+                        {/*<option id="select-1" value="All">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
+                        {/*<option id="select-2" value="Animation">Animation</option>*/}
+                        {/*<option id="select-3" value="VFX">&nbsp;&nbsp;&nbsp;&nbsp;VFX&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
+                        {/*<option id="select-4" value="Design">&nbsp;&nbsp;Design&nbsp;&nbsp;</option>*/}
+                        {/*<option id="select-5" value="Film">&nbsp;&nbsp;&nbsp;&nbsp;Film&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
+                        {/*<option id="select-6" value="Sound">&nbsp;&nbsp;Sound&nbsp;&nbsp;</option>*/}
+                    {/*</select>*/}
                     <div>
-                        <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
+                        <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")} checked/>
                         <label htmlFor="filter-1">All</label>|
 
                         <input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Animation")}/>
@@ -236,34 +237,6 @@ export class Main extends React.Component {
 
                         <input type="radio" id="filter-9" name="jeff" onClick={() => this.handleFilterClick("Sound")}/>
                         <label htmlFor="filter-9" style={{borderRight: "none"}}>Sound</label>
-
-
-                    {/*<input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>*/}
-                        {/*<label htmlFor="filter-1">All</label>|*/}
-
-                    {/*<input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Motion Graphics")}/>*/}
-                        {/*<label htmlFor="filter-2">Motion Graphics</label>|*/}
-
-                    {/*<input type="radio" id="filter-3" name="jeff" onClick={() => this.handleFilterClick("Compositing")}/>*/}
-                        {/*<label htmlFor="filter-3">Compositing</label>|*/}
-
-                    {/*<input type="radio" id="filter-4" name="jeff" onClick={() => this.handleFilterClick("VFX")}/>*/}
-                        {/*<label htmlFor="filter-4">VFX</label>|*/}
-
-                    {/*<input type="radio" id="filter-5" name="jeff" onClick={() => this.handleFilterClick("Designer")}/>*/}
-                        {/*<label htmlFor="filter-5">Designer</label>|*/}
-
-                    {/*<input type="radio" id="filter-6" name="jeff" onClick={() => this.handleFilterClick("Director")}/>*/}
-                        {/*<label htmlFor="filter-6">Director</label>|*/}
-
-                    {/*<input type="radio" id="filter-7" name="jeff" onClick={() => this.handleFilterClick("Editor")}/>*/}
-                        {/*<label htmlFor="filter-7">Editor</label>|*/}
-
-                    {/*<input type="radio" id="filter-8" name="jeff" onClick={() => this.handleFilterClick("Filmer")}/>*/}
-                        {/*<label htmlFor="filter-8">Filmer</label>|*/}
-
-                    {/*<input type="radio" id="filter-9" name="jeff" onClick={() => this.handleFilterClick("Illustrator")}/>*/}
-                        {/*<label htmlFor="filter-9" style={{borderRight: "none"}}>Illustrator</label>*/}
                     </div>
                 </form>
 
