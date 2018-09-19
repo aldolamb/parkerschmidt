@@ -210,6 +210,14 @@ export class Main extends React.Component {
                 <iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"
                             frameBorder="0" allowFullScreen/>
                 <form className="filters" action="">
+                    <select>
+                        <option value="volvo">All</option>
+                        <option value="saab">Animation</option>
+                        <option value="opel">VFX</option>
+                        <option value="audi">Design</option>
+                        <option value="audi">Film</option>
+                        <option value="audi">Sound</option>
+                    </select>
                     <div>
                         <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
                         <label htmlFor="filter-1">All</label>|
