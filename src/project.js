@@ -40,8 +40,9 @@ export class Project extends React.Component {
     }
 
     async handleDelete() {
+        const self = this;
         firebase.firestore().collection("projects").doc(this.state.postID).delete().then(function() {
-            this.props.history.push('/');
+            self.props.history.push('/');
         }).catch(function(error) {
             window.alert("Error removing document: " + error);
         });
@@ -79,9 +80,11 @@ export class Project extends React.Component {
                         }).join(", ")}</p>
 
                         <div className="information">
-                                <p>{this.state.data.Description}</p>
-                                <p>Client: {this.state.data.ClientURL ?
-                                    <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>
+                                {this.state.data.Description && <p>{this.state.data.Description}</p>}
+                                {this.state.data.Client && <p>Client: {this.state.data.ClientURL ?
+                                    <a href={this.state.data.ClientURL}>{this.state.data.Client}</a> : this.state.data.Client}</p>}
+                                {this.state.data.FullProject &&
+                                <p>View the full project <a href={this.state.data.FullProject}>here</a></p>}
                                     <p style={{margin: "0 auto"}}>Programs Used:</p>
                                     <p style={{margin: "0 auto"}}>{this.state.data.Tools.map((tool) => {
                                         return <li className={tool} key={tool}/>
@@ -91,14 +94,17 @@ export class Project extends React.Component {
                         <div className="clips">
                             {this.createClips(this.state.data.Clips)}
                         </div>
-                        <div className="projectNavigation">
-                            <a id="backArrow">&larr;</a>
-                            <a href="/">HOME</a>
-                            <a id="nextArrow">&rarr;</a>
-                        </div>
                     </div>
                 </div>
                 }
+                <a href={"/edit/" + this.state.postID} className="linkButton">Edit</a>
+                <button href={"/edit/" + this.state.postID} className="linkButton"
+                        onClick={() => this.handleDelete()}>Delete</button>
+                <div className="projectNavigation">
+                    <a id="backArrow">&larr;</a>
+                    <a href="/">HOME</a>
+                    <a id="nextArrow">&rarr;</a>
+                </div>
             </div>
         )
     }

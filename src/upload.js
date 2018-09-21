@@ -42,6 +42,7 @@ export class Upload extends React.Component {
                     document.getElementById('uploadVideo').value = embedURL;
                     document.getElementById('uploadTitle').value = results["title"];
                     document.getElementById('uploadDescription').value = results["description"];
+                    document.getElementById('uploadRatio').value = results["height"]/results["width"];
 
                     // return thumbnail_url;
                 })
@@ -58,20 +59,16 @@ export class Upload extends React.Component {
         const image = document.getElementById('uploadCoverImage').value.replace("google.com/open", "google.com/uc");
         const title = document.getElementById('uploadTitle').value;
         // const url = document.getElementById('uploadTitle').value.toLowerCase().replace(/[^\w\s]/gi, '').trim().split(" ").join("-");
-        let video = document.getElementById('uploadVideo').value;
-        // console.log(video.indexOf('src='));
-        if (video.indexOf('src=') !== -1) {
-            video = video.substring(video.indexOf('src='));
-            video = video.substring(5, video.indexOf(' ') - 1);
-        }
-        // this.loadThumbnail(video);
-        // console.log("Test: " + test);
+        const video = document.getElementById('uploadVideo').value;
+        const ratio = document.getElementById('uploadRatio').value;
+
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;
+        const fullProject = document.getElementById('uploadFullProject').value;
         const description = document.getElementById('uploadDescription').value;
         const checkedRoles = document.querySelectorAll("input[name^='uploadRoles']:checked");
         const checkedTools = document.querySelectorAll("input[name^='uploadTools']:checked");
-        const clips = document.querySelectorAll("input[name^='clip']");
+        const clips = document.querySelectorAll("iframe[name^='clip']");
 
         let Roles = [];
         for (let item of checkedRoles) {
@@ -85,7 +82,7 @@ export class Upload extends React.Component {
 
         let Clips = [];
         for (let item of clips) {
-            Clips.push(item.value);
+            Clips.push(item.src);
         }
 
         const self = this;
@@ -97,8 +94,9 @@ export class Upload extends React.Component {
             Video: video,
             Client: client,
             ClientURL: clientURL,
+            FullProject: fullProject,
             Description: description,
-            Ratio: 0.5625,
+            Ratio: ratio,
             Roles,
             Tools,
             Clips,
@@ -108,13 +106,18 @@ export class Upload extends React.Component {
     }
 
     addClip = () => {
+        let input = window.prompt("Enter a URL");
+        if (input && input.includes("https://vimeo.com/")) {
+            const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
+
+            let p = document.getElementById("uploadClips");
+            let newElement = document.createElement("iframe");
+            newElement.setAttribute('id', "clip"+(p.childElementCount+1));
+            newElement.setAttribute('name', 'clip');
+            newElement.setAttribute('src', embedURL);
+            p.appendChild(newElement);
+        }
         // Adds an element to the document
-        let p = document.getElementById("uploadClips");
-        let newElement = document.createElement("input");
-        newElement.setAttribute('id', "clip"+(p.childElementCount+1));
-        newElement.setAttribute('name', 'clip');
-        newElement.setAttribute('type', "text");
-        p.appendChild(newElement);
     };
 
     removeClip = () => {
@@ -130,14 +133,14 @@ export class Upload extends React.Component {
         return (
             <div className="upload">
                 <form onSubmit={this.handleSubmit.bind(this)} method="POST">
-                    <button type="button" onClick={() => this.loadThumbnail(prompt("Video URL"))}>Load From Vimeo</button>
+                    <button type="button" onClick={() => this.loadThumbnail(prompt("Video URL"))}>Load Cover Video</button>
                     <div>
                         <label htmlFor="uploadVideo" onClick={() =>
                             window.alert("This is the video of the project for the project page. For Vimeo, have 'fixed size' selected." +
                                 "You can also choose loop, autoplay, or a color too but have everything else deselected. For Youtube, select any of the options.")}>
                             Video
                         </label>
-                        <input type="text" id="uploadVideo" name="Video" required/>
+                        <input type="text" id="uploadVideo" name="Video" required readOnly/>
                     </div>
 
                     <div>
@@ -147,7 +150,15 @@ export class Upload extends React.Component {
                                 "Try and compress the image as well if possible to reduce file size, only enough where image quality isn't sacrificed.")}>
                             Cover Image
                         </label>
-                        <input type="text" id="uploadCoverImage" autoComplete="off" name="CoverImage" required/>
+                        <input type="text" id="uploadCoverImage" autoComplete="off" name="CoverImage" required readOnly/>
+                    </div>
+
+                    <div>
+                        <label htmlFor="uploadRatio" onClick={() =>
+                            window.alert("height/width of video")}>
+                            Ratio
+                        </label>
+                        <input type="text" id="uploadRatio" autoComplete="off" name="Ratio" required readOnly/>
                     </div>
 
                     <div>
@@ -155,8 +166,7 @@ export class Upload extends React.Component {
                             window.alert("This is the title of the project. It has to be unique from all other projects")}>
                             Title
                         </label>
-                        <input type="text" id="uploadTitle" autoComplete="off" required
-                               name="Title"/>
+                        <input type="text" id="uploadTitle" autoComplete="off" name="Title" required readOnly/>
                     </div>
 
                     <div>
@@ -184,13 +194,21 @@ export class Upload extends React.Component {
                             window.alert("Name of the client")}>
                             Client
                         </label>
-                        <input type="text" id="uploadClient" name="Client" required/>
+                        <input type="text" id="uploadClient" name="Client"/>
 
                         <label htmlFor="uploadClientURL" onClick={() =>
                             window.alert("URL if you want to link to the clients site. This is optional")}>
                             URL
                         </label>
                         <input type="text" className="form-control" id="uploadClientURL" name="ClientURL"/>
+                    </div>
+
+                    <div>
+                        <label htmlFor="uploadFullProject" onClick={() =>
+                            window.alert("link for the Full project")}>
+                            Link to full project
+                        </label>
+                        <input type="text" id="uploadFullProject" name="FullProject"/>
                     </div>
 
                     <div>
@@ -204,7 +222,6 @@ export class Upload extends React.Component {
                     <div>
                         Clips
                         <div id="uploadClips" className="uploadImages">
-                            <input type="text" id="clip1" name="clip"/>
                         </div>
                         <button type="button" onClick={() => this.addClip()}>+</button>
                         <button type="button" onClick={() => this.removeClip()}>-</button>

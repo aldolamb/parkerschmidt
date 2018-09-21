@@ -211,16 +211,8 @@ export class Main extends React.Component {
                             frameBorder="0" allowFullScreen/>
 
                 <form className="filters" action="">
-                    {/*<select>*/}
-                        {/*<option id="select-1" value="All">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
-                        {/*<option id="select-2" value="Animation">Animation</option>*/}
-                        {/*<option id="select-3" value="VFX">&nbsp;&nbsp;&nbsp;&nbsp;VFX&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
-                        {/*<option id="select-4" value="Design">&nbsp;&nbsp;Design&nbsp;&nbsp;</option>*/}
-                        {/*<option id="select-5" value="Film">&nbsp;&nbsp;&nbsp;&nbsp;Film&nbsp;&nbsp;&nbsp;&nbsp;</option>*/}
-                        {/*<option id="select-6" value="Sound">&nbsp;&nbsp;Sound&nbsp;&nbsp;</option>*/}
-                    {/*</select>*/}
                     <div>
-                        <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")} checked/>
+                        <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
                         <label htmlFor="filter-1">All</label>|
 
                         <input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Animation")}/>
@@ -239,6 +231,8 @@ export class Main extends React.Component {
                         <label htmlFor="filter-9" style={{borderRight: "none"}}>Sound</label>
                     </div>
                 </form>
+
+                <button className="linkButton"><a href={"/upload"}>Upload</a></button>
 
                 <div className="posts">
                     {Object.values(this.state.data).map(this.createPosts)}
