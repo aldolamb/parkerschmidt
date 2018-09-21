@@ -166,7 +166,7 @@ export class Upload extends React.Component {
                             window.alert("This is the title of the project. It has to be unique from all other projects")}>
                             Title
                         </label>
-                        <input type="text" id="uploadTitle" autoComplete="off" name="Title" required readOnly/>
+                        <input type="text" id="uploadTitle" autoComplete="off" name="Title" required/>
                     </div>
 
                     <div>

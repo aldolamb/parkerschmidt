@@ -194,7 +194,7 @@ export class Edit extends React.Component {
                             window.alert("This is the title of the project. It has to be unique from all other projects")}>
                             Title
                         </label>
-                        <input type="text" id="uploadTitle" autoComplete="off" required name="Title" readOnly/>
+                        <input type="text" id="uploadTitle" autoComplete="off" required name="Title"/>
                     </div>
 
                     <div>
