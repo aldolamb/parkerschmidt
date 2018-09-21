@@ -52,7 +52,7 @@ export class Project extends React.Component {
         <div>
             {item && item.map((clip, index) =>
             <div key={this.state.postID + "clip" + index} className="clip" style={{height: (this.state.data.Ratio*304) + "px"}}>
-                <iframe src={clip} frameBorder="0"/>
+                <iframe src={clip+"?background=1"} frameBorder="0"/>
             </div>
             )}
         </div>
