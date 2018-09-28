@@ -232,7 +232,11 @@ export class Main extends React.Component {
                     </div>
                 </form>
 
-                <button className="linkButton"><a href={"/upload"}>Upload</a></button>
+                {sessionStorage.getItem("loggedIn") &&
+                <button className="linkButton">
+                    <a href={"/upload"}>Upload</a>
+                </button>
+                }
 
                 <div className="posts">
                     {Object.values(this.state.data).map(this.createPosts)}

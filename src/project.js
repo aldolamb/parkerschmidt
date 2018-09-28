@@ -123,11 +123,14 @@ export class Project extends React.Component {
                     </div>
                 </div>
                 }
-                {/*<div style={{display: "none"}}>*/}
-                <a href={"/edit/" + this.state.postID} className="linkButton">Edit</a>
-                <button href={"/edit/" + this.state.postID} className="linkButton"
-                        onClick={() => this.handleDelete()}>Delete</button>
-                {/*</div>*/}
+                {sessionStorage.getItem("loggedIn") &&
+                    <div>
+                        <a href={"/edit/" + this.state.postID} className="linkButton">Edit</a>
+                        <button href={"/edit/" + this.state.postID} className="linkButton"
+                                onClick={() => this.handleDelete()}>Delete
+                        </button>
+                    </div>
+                }
                 <div className="projectNavigation">
                     <a id="backArrow">&larr;</a>
                     <a href="/">HOME</a>

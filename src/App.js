@@ -25,15 +25,26 @@ export class App extends Component {
         return (
             <div>
                 <Header/>
-                <Router>
-                    <Switch>
-                        <Route path='/edit/:postID'     component={Edit} />
-                        <Route path='/upload'           component={Upload}/>
-                        <Route path='/login'            component={Login} />
-                        <Route path='/:postID'          component={Project} />
-                        <Route path='/'                 component={Main} />
-                    </Switch>
-                </Router>
+                {sessionStorage.getItem("loggedIn") ?
+                    <Router>
+                        <Switch>
+                            <Route path='/edit/:postID'     component={Edit} />
+                            <Route path='/upload'           component={Upload}/>
+                            <Route path='/login'            component={Login} />
+                            <Route path='/:postID'          component={Project} />
+                            <Route path='/'                 component={Main} />
+                        </Switch>
+                    </Router> :
+                    <Router>
+                        <Switch>
+                            {/*<Route path='/edit/:postID'     component={Edit} />*/}
+                            {/*<Route path='/upload'           component={Upload}/>*/}
+                            <Route path='/login'            component={Login} />
+                            <Route path='/:postID'          component={Project} />
+                            <Route path='/'                 component={Main} />
+                        </Switch>
+                    </Router>
+                }
             </div>
         )
     }
