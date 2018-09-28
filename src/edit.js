@@ -54,11 +54,11 @@ export class Edit extends React.Component {
             document.getElementById("uploadTitle").value = snapshotData.Title;
             document.getElementById("uploadCoverImage").value = snapshotData.CoverImage;
             document.getElementById("uploadVideo").value = snapshotData.Video;
-            document.getElementById("uploadFullProject").value = snapshotData.FullProject && "";
-            document.getElementById("uploadDescription").value = snapshotData.Description && "";
+            document.getElementById("uploadFullProject").value = snapshotData.FullProject ? snapshotData.FullProject : "";
+            document.getElementById("uploadDescription").value = snapshotData.Description ? snapshotData.Description : "";
             document.getElementById("uploadRatio").value = snapshotData.Ratio;
-            document.getElementById("uploadClient").value = snapshotData.Client && "";
-            document.getElementById("uploadClientURL").value = snapshotData.ClientURL && "";
+            document.getElementById("uploadClient").value = snapshotData.Client ? snapshotData.Client : "";
+            document.getElementById("uploadClientURL").value = snapshotData.ClientURL ? snapshotData.ClientURL : "";
             snapshotData.Roles.map((e) => document.getElementById(e).checked = true);
             snapshotData.Tools.map((e) => document.getElementById(e).checked = true);
             snapshotData.Clips.map((e) =>
@@ -90,7 +90,7 @@ export class Edit extends React.Component {
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;
         const fullProject = document.getElementById('uploadFullProject').value;
-        const description = document.getElementById('uploadDescription').value;
+        const description = document.getElementById('uploadDescription').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
         const checkedRoles = document.querySelectorAll("input[name^='uploadRoles']:checked");
         const checkedTools = document.querySelectorAll("input[name^='uploadTools']:checked");
         const clips = document.querySelectorAll("iframe[name^='clip']");
@@ -138,15 +138,36 @@ export class Edit extends React.Component {
 
     addClip = () => {
         let input = window.prompt("Enter a URL");
-        if (input && input.includes("https://vimeo.com/")) {
-            const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
+        // if (input && input.includes("https://vimeo.com/")) {
+        //     const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
+        //
+        //     let p = document.getElementById("uploadClips");
+        //     let newElement = document.createElement("iframe");
+        //     newElement.setAttribute('id', "clip"+(p.childElementCount+1));
+        //     newElement.setAttribute('name', 'clip');
+        //     newElement.setAttribute('src', embedURL);
+        //     p.appendChild(newElement);
+        // }
+        if (input) {
+            if (input && input.includes("https://vimeo.com/")) {
+                const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
 
-            let p = document.getElementById("uploadClips");
-            let newElement = document.createElement("iframe");
-            newElement.setAttribute('id', "clip"+(p.childElementCount+1));
-            newElement.setAttribute('name', 'clip');
-            newElement.setAttribute('src', embedURL);
-            p.appendChild(newElement);
+                let p = document.getElementById("uploadClips");
+                let newElement = document.createElement("iframe");
+                newElement.setAttribute('id', "clip" + (p.childElementCount + 1));
+                newElement.setAttribute('name', 'clip');
+                newElement.setAttribute('src', embedURL);
+                p.appendChild(newElement);
+            } else if (input.includes("youtube")) {
+                const embedURL = "https://www.youtube.com/embed/" + input.substring(input.indexOf("=") + 1);
+
+                let p = document.getElementById("uploadClips");
+                let newElement = document.createElement("iframe");
+                newElement.setAttribute('id', "clip" + (p.childElementCount + 1));
+                newElement.setAttribute('name', 'clip');
+                newElement.setAttribute('src', embedURL);
+                p.appendChild(newElement);
+            }
         }
         // Adds an element to the document
     };

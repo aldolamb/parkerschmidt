@@ -4,8 +4,8 @@ export class Header extends React.Component {
     render() {
         return (
             <header>
-                <div style={{float: "left"}}><a href="/">PARKER SCHMIDT</a></div>
-                <div style={{float: "right"}}>
+                <div className="parkerSchmidt" style={{float: "left"}}><a href="/">PARKER SCHMIDT</a></div>
+                <div className="contact" style={{float: "right"}}>
                     <a href="mailto:parkerschmidt95@gmail.com">CONTACT</a>
                     {/*<div className="adobeAfterEffects"/>*/}
                     {/*<a href="https://www.instagram.com/parkerrschmidtt/?hl=en"><img src={Instagram} alt="Instagram"/></a>*/}

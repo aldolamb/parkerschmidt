@@ -22,33 +22,43 @@ export class Upload extends React.Component {
         // });
 
         if (url) {
-            const embedURL = "https://player.vimeo.com/video/" + url.substring(url.indexOf(".com/") + 5);
+            if (url.indexOf("youtube") != -1) {
+                const videoCode = url.substring(url.indexOf("=") + 1);
+                const embedURL = "https://www.youtube.com/embed/" + videoCode;
+                const thumbnail_url = "https://img.youtube.com/vi/" + videoCode + "/sddefault.jpg";
 
-            let apiURL = "https://vimeo.com/api/oembed.json?url=" + embedURL;
+                document.getElementById('uploadVideo').value = embedURL;
+                document.getElementById('uploadCoverImage').value = thumbnail_url;
+                document.getElementById('uploadRatio').value = 0.5625;
+            } else {
+                const embedURL = "https://player.vimeo.com/video/" + url.substring(url.indexOf(".com/") + 5);
 
-            let thumbnail_url = '';
+                let apiURL = "https://vimeo.com/api/oembed.json?url=" + embedURL;
 
-            fetch(apiURL)
-                .then(response => response.json())
-                .then(results => {
-                    console.log(results);
-                    thumbnail_url = results["thumbnail_url"];
-                    // if (thumbnail_url.indexOf('_') !== -1)
-                    // thumbnail_url = thumbnail_url.replace('_', '');
-                    // thumbnail_url = thumbnail_url.replace(thumbnail_url.substring(thumbnail_url.indexOf('_')), '.jpg');
-                    thumbnail_url = thumbnail_url.substring(0, thumbnail_url.indexOf('_'));
+                let thumbnail_url = '';
 
-                    document.getElementById('uploadCoverImage').value = thumbnail_url;
-                    document.getElementById('uploadVideo').value = embedURL;
-                    document.getElementById('uploadTitle').value = results["title"];
-                    document.getElementById('uploadDescription').value = results["description"];
-                    document.getElementById('uploadRatio').value = results["height"]/results["width"];
+                fetch(apiURL)
+                    .then(response => response.json())
+                    .then(results => {
+                        console.log(results);
+                        thumbnail_url = results["thumbnail_url"];
+                        // if (thumbnail_url.indexOf('_') !== -1)
+                        // thumbnail_url = thumbnail_url.replace('_', '');
+                        // thumbnail_url = thumbnail_url.replace(thumbnail_url.substring(thumbnail_url.indexOf('_')), '.jpg');
+                        thumbnail_url = thumbnail_url.substring(0, thumbnail_url.indexOf('_'));
 
-                    // return thumbnail_url;
-                })
-                .catch(error => {
-                    window.alert("Error in video url: " + error);
-                });
+                        document.getElementById('uploadCoverImage').value = thumbnail_url;
+                        document.getElementById('uploadVideo').value = embedURL;
+                        document.getElementById('uploadTitle').value = results["title"];
+                        document.getElementById('uploadDescription').value = results["description"];
+                        document.getElementById('uploadRatio').value = results["height"] / results["width"];
+
+                        // return thumbnail_url;
+                    })
+                    .catch(error => {
+                        window.alert("Error in video url: " + error);
+                    });
+            }
         }
     }
 
@@ -65,7 +75,7 @@ export class Upload extends React.Component {
         const client = document.getElementById('uploadClient').value;
         const clientURL = document.getElementById('uploadClientURL').value;
         const fullProject = document.getElementById('uploadFullProject').value;
-        const description = document.getElementById('uploadDescription').value;
+        const description = document.getElementById('uploadDescription').value.replace(/(?:\r\n|\r|\n)/g, '<br>');
         const checkedRoles = document.querySelectorAll("input[name^='uploadRoles']:checked");
         const checkedTools = document.querySelectorAll("input[name^='uploadTools']:checked");
         const clips = document.querySelectorAll("iframe[name^='clip']");
@@ -107,15 +117,26 @@ export class Upload extends React.Component {
 
     addClip = () => {
         let input = window.prompt("Enter a URL");
-        if (input && input.includes("https://vimeo.com/")) {
-            const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
+        if (input) {
+            if (input && input.includes("https://vimeo.com/")) {
+                const embedURL = "https://player.vimeo.com/video/" + input.substring(input.indexOf(".com/") + 5);
 
-            let p = document.getElementById("uploadClips");
-            let newElement = document.createElement("iframe");
-            newElement.setAttribute('id', "clip"+(p.childElementCount+1));
-            newElement.setAttribute('name', 'clip');
-            newElement.setAttribute('src', embedURL);
-            p.appendChild(newElement);
+                let p = document.getElementById("uploadClips");
+                let newElement = document.createElement("iframe");
+                newElement.setAttribute('id', "clip" + (p.childElementCount + 1));
+                newElement.setAttribute('name', 'clip');
+                newElement.setAttribute('src', embedURL);
+                p.appendChild(newElement);
+            } else if (input.includes("youtube")) {
+                const embedURL = "https://www.youtube.com/embed/" + input.substring(input.indexOf("=") + 1);
+
+                let p = document.getElementById("uploadClips");
+                let newElement = document.createElement("iframe");
+                newElement.setAttribute('id', "clip" + (p.childElementCount + 1));
+                newElement.setAttribute('name', 'clip');
+                newElement.setAttribute('src', embedURL);
+                p.appendChild(newElement);
+            }
         }
         // Adds an element to the document
     };
