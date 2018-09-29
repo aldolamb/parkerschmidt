@@ -307,8 +307,19 @@ a {
     /*background-color: #008CBA;*/
 }
 
+.postContainer img {
+
+    /*transition: opacity 100ms ease-in-out;*/
+    /*-moz-transition: opacity 100ms ease-in-out;*/
+    /*-webkit-transition: opacity 100ms ease-in-out;*/
+    /*-webkit-transition : -webkit-filter 150ms linear;*/
+}
+
 .postContainer:hover img {
-    opacity: .8;
+    opacity: .75;
+    /*-webkit-transition : -webkit-filter 220ms linear;*/
+    /*filter: invert(100%) !important;*/
+    /*-webkit-filter: invert(100%) !important;*/
 }
 
 .container:hover .overlay {
