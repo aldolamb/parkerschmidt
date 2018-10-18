@@ -207,8 +207,10 @@ export class Main extends React.Component {
                     <div className="loadingScreenIcon"
                          ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
                 </div>
-                <iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"
-                            frameBorder="0" allowFullScreen/>
+                {/*<iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"*/}
+                            {/*frameBorder="0" allowFullScreen/>*/}
+                <iframe className="showReelVideo" src={this.state.data[0] && this.state.data[0].Video}
+                        frameBorder="0" allowFullScreen/>
 
                 <form className="filters" action="">
                     <div>

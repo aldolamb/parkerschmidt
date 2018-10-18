@@ -96,6 +96,7 @@ export class Project extends React.Component {
                         </div>
 
                         <div className="information">
+                            <div>
                             {/*{this.state.data.Description && <p>{this.state.data.Description}</p>}*/}
                             {this.state.data.Description && <p dangerouslySetInnerHTML={{ __html: this.state.data.Description}}></p>}
                                 {this.state.data.Client && <p>Client: {this.state.data.ClientURL ?
@@ -106,6 +107,7 @@ export class Project extends React.Component {
                                     <p style={{margin: "0 auto"}}>{this.state.data.Tools.map((tool) => {
                                         return <li className={tool} key={tool}/>
                                     })}</p>
+                            </div>
                         </div>
 
                         {this.state.data.Clips.length > 0 && <p style={{textAlign: "center", letterSpacing: "normal", margin: "5vh"}}>More From This Project</p>}
