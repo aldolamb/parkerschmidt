@@ -738,31 +738,20 @@ select * {
         padding: 0 0 20px;
     }
     .projectPage h1 { font-size: 1.6em; }
-    body {
-        animation: colorChange 50s infinite;
-        -webkit-animation: colorChange 50s infinite;
-    }
+    /*body {*/
+        /*animation: colorChange 50s infinite;*/
+        /*-webkit-animation: colorChange 50s infinite;*/
+    /*}*/
     header .parkerSchmidt { float: none; text-align: center; width: 100%; }
-    header .contact { display: none }
+    header .contact, .main .showReelVideo, .main .filters { display: none; }
+    .clip:hover iframe {
+        opacity: 1;
+    }
+
 }
-
-/*.information > div { margin: 0 auto; }*/
-
-/*@media only screen and (min-width: 900px) {*/
-    /*.information > div { width: 900px; }*/
-/*}*/
-
-/*@media only screen and (max-width: 900px) {*/
-    /*.information > div { width: 600px; }*/
-/*}*/
-
-/*@media only screen and (max-width: 600px) {*/
-    /*.information > div { width: 300px; }*/
-/*}*/
 
 @media only screen and (max-width: 420px) {
     header .socialIcons { display: none; }
-    /*.main .showReelVideo { display: none; }*/
 }
 
 
