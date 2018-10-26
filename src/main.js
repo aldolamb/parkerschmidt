@@ -4,28 +4,6 @@ import bodymovin from 'bodymovin'
 import animationData from './Black Animation Intro.json'
 const firebase = require("firebase");
 
-const filters = [
-    "All",
-    "Motion Graphics",
-    "Compositing",
-    "VFX",
-    "Designer",
-    "Director",
-    "Editor",
-    "Filmer",
-    "Illustrator"
-];
-
-
-const filtersNew = [
-    "All",
-    "Animation",
-    "VFX",
-    "Design",
-    "Film",
-    "Sound"
-];
-
 export class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -64,44 +42,11 @@ export class Main extends React.Component {
             let element = document.getElementById("loadingScreen");
             setTimeout(function(){ element.style.opacity = "0"; window.scrollTo(0, 0); }, 1000);
             setTimeout(function(){ element.parentNode.removeChild(element) }, 1500);
-
         })
-        .catch(err => {
-            console.log('Error getting documents', err);
-        });
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
     }
-
-    // onScroll = () => {
-    //     if (
-    //         (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 250) &&
-    //         this.state.data.length && this.state.isLoaded
-    //     ) {
-    //         this.loadMore();
-    //     }
-    // };
-    //
-    // async loadMore() {
-    //     let self = this;
-    //     self.setState({isLoaded: false});
-    //
-    //     const data = [];
-    //     const lowerValue = this.state.lastVisible;
-    //     firebase.firestore().collection("posts").orderBy('Date', 'desc').startAfter(lowerValue).limit(5).get().then(snapshot => {
-    //         let lastVisible = snapshot.docs.length && snapshot.docs[snapshot.docs.length - 1].data().Date;
-    //         snapshot.forEach(doc => {
-    //             let temp = doc.data();
-    //             temp.key = doc.id;
-    //             data.push(temp);
-    //         });
-    //         if (data.length) {
-    //             self.setState({data: self.state.data.concat(data.reverse())});
-    //             self.setState({lastVisible: lastVisible, isLoaded: true})
-    //         }
-    //     })
-    //         .catch(err => {
-    //             console.log('Error getting documents', err);
-    //         });
-    // }
 
     static resetForm () {
         document.getElementById('contact-form').reset();
@@ -129,55 +74,11 @@ export class Main extends React.Component {
         <div key={item.Date + "-wrapper"}>
             {(item.Roles.includes(this.state.filter) || this.state.filter === "All") &&
             <div key={item.Date} className="postContainer">
-                {/*{sessionStorage.getItem("loggedIn") &&*/}
-                {/*<div className="toolbar">*/}
-                {/*<a style={{float: "left"}} href={`./edit/${item.key}`}>edit</a>*/}
-                {/*<div style={{float: "right", cursor: "pointer"}} onClick={() =>*/}
-                {/*window.confirm("are you sure you want to delete this") &&*/}
-                {/*firebase.firestore().collection("posts").doc(item.key).delete().then(() => {*/}
-                {/*this.props.history.push('/');*/}
-                {/*})}>delete</div>*/}
-                {/*<div>{new Date(item["Date"]).toLocaleString()}</div>*/}
-                {/*</div>*/}
-                {/*}*/}
-                <a key={item.Title} href={`/${item.key}`}>
-                    <img src={item.CoverImage} alt={item.Title} key={"img-"+item.Title}/>
-                    <h4>{item.Title}</h4>
-                    {/*<div style={{top: 0, left: 0, width: "100%", height: "252px", background: "red"}}>*/}
-                    {/*</div>*/}
-                    {/*<p>{item.Roles.map((e) => {return e}).join(", ")}</p>*/}
-                    {/*<div className="overlay2">*/}
-                        {/*<div className="text">*/}
-                            {/*<h2>{item.Title}</h2>*/}
-                            {/*<pre>{item.Roles.map((e) => {return e}).join("\n")}</pre>*/}
-                        {/*</div>*/}
-                    {/*</div>*/}
-                    {/*<div className="overlayPic"/>*/}
-                </a>
+                <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>
+                <img src={item.CoverImage} alt={item.Title} key={"img-"+item.Title} id={"img-"+item.Title}/>
+                <h4>{item.Title}</h4>
+                <a key={item.Title} href={`/${item.key}`}/>
             </div>
-            // <div key={item.Date} className="container">
-            //     {/*{sessionStorage.getItem("loggedIn") &&*/}
-            //     {/*<div className="toolbar">*/}
-            //         {/*<a style={{float: "left"}} href={`./edit/${item.key}`}>edit</a>*/}
-            //         {/*<div style={{float: "right", cursor: "pointer"}} onClick={() =>*/}
-            //             {/*window.confirm("are you sure you want to delete this") &&*/}
-            //             {/*firebase.firestore().collection("posts").doc(item.key).delete().then(() => {*/}
-            //                 {/*this.props.history.push('/');*/}
-            //             {/*})}>delete</div>*/}
-            //         {/*<div>{new Date(item["Date"]).toLocaleString()}</div>*/}
-            //     {/*</div>*/}
-            //     {/*}*/}
-            //     <a className="projectPreview" key={item.Title} href={`/${item.key}`}>
-            //         <img src={item.CoverImage} alt={item.Title} className="image"/>
-            //         <div className="overlay2">
-            //             <div className="text">
-            //                 <h2>{item.Title}</h2>
-            //                 <pre>{item.Roles.map((e) => {return e}).join("\n")}</pre>
-            //             </div>
-            //         </div>
-            //         <div className="overlayPic"/>
-            //     </a>
-            // </div>
             }
         </div>
     );
@@ -207,10 +108,6 @@ export class Main extends React.Component {
                     <div className="loadingScreenIcon"
                          ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
                 </div>
-                {/*<iframe className="showReelVideo" src="https://player.vimeo.com/video/280292382?title=0&byline=0&portrait=0"*/}
-                            {/*frameBorder="0" allowFullScreen/>*/}
-                <iframe className="showReelVideo" src={this.state.data[0] && this.state.data[0].Video}
-                        frameBorder="0" allowFullScreen/>
 
                 <form className="filters" action="">
                     <div>
