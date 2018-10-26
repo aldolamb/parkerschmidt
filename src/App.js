@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
+import './css/App.css';
 
 import firebase from "firebase";
 import { Main } from "./main";
