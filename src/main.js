@@ -74,7 +74,7 @@ export class Main extends React.Component {
         <div key={item.Date + "-wrapper"}>
             {(item.Roles.includes(this.state.filter) || this.state.filter === "All") &&
             <div key={item.Date} className="postContainer">
-                <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>
+                {window.innerWidth > 520 && <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>}
                 <img src={item.CoverImage} alt={item.Title} key={"img-"+item.Title} id={"img-"+item.Title}/>
                 <h4>{item.Title}</h4>
                 <a key={item.Title} href={`/${item.key}`}/>

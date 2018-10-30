@@ -45,7 +45,10 @@ header {
     line-height: 11vh;
 
     .parkerSchmidt { float: left;  }
-    .contact       { float: right; }
+    .contact       {
+        float: right;
+        img { vertical-align: text-top; display: none; }
+    }
 }
 
 footer {
@@ -440,9 +443,10 @@ pre {
 }
 
 @media only screen and (max-width: 420px) {
-    header .contact, .main .showReelVideo, .main .filters { display: none; }
+    header .contact a span, .main .showReelVideo, .main .filters { display: none; }
     .projectPage h1 { font-size: 1.6em; }
-    header .parkerSchmidt { float: none; text-align: center; width: 100%; line-height: 12vh; }
+    header .contact a img { display: inline-block; }
+    //header .parkerSchmidt { float: none; text-align: center; width: 100%; line-height: 12vh; }
 
     .clip:hover iframe {
         opacity: 1;
@@ -450,6 +454,23 @@ pre {
 
     .main {
         top: 12vh;
+        //.posts {
+        //    .postContainer {
+        //        width: 100vw;
+        //        padding: 5vw;
+        //        a {
+        //            width: 100vw;
+        //        }
+        //        h4 {
+        //            margin: 5vw;
+        //            font-size: .76em;
+        //        }
+        //        img, iframe {
+        //            width: 100vw;
+        //            height: 56.25vw;
+        //        }
+        //    }
+        //}
         .posts {
             .postContainer {
                 width: 160px;

@@ -50,6 +50,10 @@ header .parkerSchmidt {
 header .contact {
   float: right;
 }
+header .contact img {
+  vertical-align: text-top;
+  display: none;
+}
 
 footer {
   width: 100%;
@@ -431,7 +435,7 @@ pre {
   }
 }
 @media only screen and (max-width: 420px) {
-  header .contact, .main .showReelVideo, .main .filters {
+  header .contact a span, .main .showReelVideo, .main .filters {
     display: none;
   }
 
@@ -439,11 +443,8 @@ pre {
     font-size: 1.6em;
   }
 
-  header .parkerSchmidt {
-    float: none;
-    text-align: center;
-    width: 100%;
-    line-height: 12vh;
+  header .contact a img {
+    display: inline-block;
   }
 
   .clip:hover iframe {
