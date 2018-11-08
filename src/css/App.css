@@ -43,6 +43,10 @@ header {
   margin-top: 0.5vh;
   font-size: 1.4em;
   line-height: 11vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 header .parkerSchmidt {
   float: left;
@@ -103,6 +107,7 @@ a, a:hover {
 }
 
 .showReelVideo {
+  padding-top: 11.5vh;
   width: 100vw;
   height: 56.25vw;
   max-width: 136vh;
@@ -178,12 +183,12 @@ a, a:hover {
 }
 
 .main {
-  position: absolute;
-  top: 8vh;
+  padding-top: 8vh;
   left: 0;
   right: 0;
   margin: 0 auto;
   text-align: center;
+  min-height: 82vh;
 }
 .main .posts {
   max-width: 100vw;
@@ -451,8 +456,17 @@ pre {
     opacity: 1;
   }
 
+  header {
+    margin-top: 1vh;
+  }
+
+  .showReelVideo {
+    padding-top: 12vh;
+  }
+
   .main {
-    top: 12vh;
+    padding-top: 11.5vh;
+    min-height: 78vh;
   }
   .main .posts .postContainer {
     width: 160px;

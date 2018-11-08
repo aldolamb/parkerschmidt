@@ -103,44 +103,46 @@ export class Main extends React.Component {
 
     render() {
         return (
-            <div className="main">
-                <div id="loadingScreen" className="loadingScreen">
-                    <div className="loadingScreenIcon"
-                         ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
-                </div>
-
-                <form className="filters" action="">
-                    <div>
-                        <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
-                        <label htmlFor="filter-1">All</label>|
-
-                        <input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Animation")}/>
-                        <label htmlFor="filter-2">Animation</label>|
-
-                        <input type="radio" id="filter-4" name="jeff" onClick={() => this.handleFilterClick("VFX")}/>
-                        <label htmlFor="filter-4">VFX</label>|
-
-                        <input type="radio" id="filter-5" name="jeff" onClick={() => this.handleFilterClick("Design")}/>
-                        <label htmlFor="filter-5">Design</label>|
-
-                        <input type="radio" id="filter-8" name="jeff" onClick={() => this.handleFilterClick("Film")}/>
-                        <label htmlFor="filter-8">Film</label>|
-
-                        <input type="radio" id="filter-9" name="jeff" onClick={() => this.handleFilterClick("Sound")}/>
-                        <label htmlFor="filter-9" style={{borderRight: "none"}}>Sound</label>
+            <div>
+                <div className="main">
+                    <div id="loadingScreen" className="loadingScreen">
+                        <div className="loadingScreenIcon"
+                             ref={(animationDiv) => { this.animationContainer = animationDiv; }}/>
                     </div>
-                </form>
 
-                {sessionStorage.getItem("loggedIn") &&
-                <button className="linkButton">
-                    <a href={"/upload"}>Upload</a>
-                </button>
-                }
+                    <form className="filters" action="">
+                        <div>
+                            <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
+                            <label htmlFor="filter-1">All</label>|
 
-                <div className="posts">
-                    {Object.values(this.state.data).map(this.createPosts)}
+                            <input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Animation")}/>
+                            <label htmlFor="filter-2">Animation</label>|
+
+                            <input type="radio" id="filter-4" name="jeff" onClick={() => this.handleFilterClick("VFX")}/>
+                            <label htmlFor="filter-4">VFX</label>|
+
+                            <input type="radio" id="filter-5" name="jeff" onClick={() => this.handleFilterClick("Design")}/>
+                            <label htmlFor="filter-5">Design</label>|
+
+                            <input type="radio" id="filter-8" name="jeff" onClick={() => this.handleFilterClick("Film")}/>
+                            <label htmlFor="filter-8">Film</label>|
+
+                            <input type="radio" id="filter-9" name="jeff" onClick={() => this.handleFilterClick("Sound")}/>
+                            <label htmlFor="filter-9" style={{borderRight: "none"}}>Sound</label>
+                        </div>
+                    </form>
+
+                    {sessionStorage.getItem("loggedIn") &&
+                    <button className="linkButton">
+                        <a href={"/upload"}>Upload</a>
+                    </button>
+                    }
+
+                    <div className="posts">
+                        {Object.values(this.state.data).map(this.createPosts)}
+                    </div>
+
                 </div>
-
                 <Footer/>
             </div>
         );

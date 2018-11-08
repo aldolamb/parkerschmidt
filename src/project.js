@@ -133,11 +133,13 @@ export class Project extends React.Component {
                         </button>
                     </div>
                 }
-                <div className="projectNavigation">
-                    <a id="backArrow">&larr;</a>
-                    <a href="/">HOME</a>
-                    <a id="nextArrow">&rarr;</a>
-                </div>
+                { this.state.data.Video &&
+                    <div className="projectNavigation">
+                        <a id="backArrow">&larr;</a>
+                        <a href="/">HOME</a>
+                        <a id="nextArrow">&rarr;</a>
+                    </div>
+                }
             </div>
         )
     }
