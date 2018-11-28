@@ -11,7 +11,7 @@ import { Edit } from "./edit";
 
 export class App extends Component {
     componentDidMount () {
-        console.log('%cMade By Aldo', 'font-weight: bold; font-size: 2em; color: white; padding: 1em; background: black;');
+        console.log('%cAldo Lamberti', 'text-align: center; padding: .5em 1em 1em .5em; font-weight: bold; font-size: 50px;color: #1a1a1a; text-shadow: 3px 3px 0 #333333, 6px 6px 0 #4d4d4d, 9px 9px 0 #666666, 12px 12px 0 #808080, 15px 15px 0 #999999, 18px 18px 0 #b3b3b3, 21px 21px 0 #cccccc, 24px 24px 0 #e6e6e6');
     }
 
     render() {
