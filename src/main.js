@@ -1,8 +1,11 @@
 import React from "react";
-import { Footer } from "./footer";
+import { Footer } from "./partials/footer";
 import bodymovin from 'bodymovin'
-import animationData from './Black Animation Intro.json'
-const firebase = require("firebase");
+import animationData from './partials/Black Animation Intro.json'
+
+// const firebase = require('firebase/app');
+// require('firebase/firestore');
+import firebase from './config/firebase.js';
 
 export class Main extends React.Component {
     constructor(props) {

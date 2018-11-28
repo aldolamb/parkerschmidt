@@ -2,25 +2,18 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './css/App.css';
 
-import firebase from "firebase";
 import { Main } from "./main";
-import { Header } from "./header";
+import { Header } from "./partials/header";
 import { Project } from "./project";
 import { Login } from "./login";
 import { Upload } from "./upload";
 import { Edit } from "./edit";
 
-const config = {
-    apiKey: "AIzaSyAZziublbH4L5O0uxy3bDJUeAXFS6Eulhc",
-    authDomain: "parkerschmidt-cd115.firebaseapp.com",
-    databaseURL: "https://parkerschmidt-cd115.firebaseio.com",
-    projectId: "parkerschmidt-cd115",
-    storageBucket: "parkerschmidt-cd115.appspot.com",
-    messagingSenderId: "82396941507"
-};
-firebase.initializeApp(config);
-
 export class App extends Component {
+    componentDidMount () {
+        console.log('%cMade By Aldo', 'font-weight: bold; font-size: 2em; color: white; padding: 1em; background: black;');
+    }
+
     render() {
         return (
             <div>

@@ -1,5 +1,8 @@
 import React from 'react';
-const firebase = require("firebase");
+// const firebase = require("firebase");
+
+const firebase = require('firebase/app');
+require('firebase/firestore');
 // const functions = require('firebase-functions');
 // const getData = functions.httpsCallable('helloWorld');
 
@@ -22,7 +25,7 @@ export class Upload extends React.Component {
         // });
 
         if (url) {
-            if (url.indexOf("youtube") != -1) {
+            if (url.indexOf("youtube") !== -1) {
                 const videoCode = url.substring(url.indexOf("=") + 1);
                 const embedURL = "https://www.youtube.com/embed/" + videoCode;
                 const thumbnail_url = "https://img.youtube.com/vi/" + videoCode + "/sddefault.jpg";

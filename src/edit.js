@@ -1,5 +1,9 @@
 import React from 'react';
-const firebase = require("firebase");
+// const firebase = require("firebase");
+
+// const firebase = require('firebase/app');
+// require('firebase/firestore');
+import firebase from './config/firebase.js';
 
 export class Edit extends React.Component {
     constructor(props) {
