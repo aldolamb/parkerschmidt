@@ -114,25 +114,23 @@ export class Main extends React.Component {
                     </div>
 
                     <form className="filters" action="">
-                        <div>
-                            <input type="radio" id="filter-1" name="jeff" onClick={() => this.handleFilterClick("All")}/>
-                            <label htmlFor="filter-1">All</label>|
+                        <input type="radio" id="filter-1" onClick={() => this.handleFilterClick("All")}/>
+                        <label htmlFor="filter-1">All</label>|
 
-                            <input type="radio" id="filter-2" name="jeff" onClick={() => this.handleFilterClick("Animation")}/>
-                            <label htmlFor="filter-2">Animation</label>|
+                        <input type="radio" id="filter-2" onClick={() => this.handleFilterClick("Animation")}/>
+                        <label htmlFor="filter-2">Animation</label>|
 
-                            <input type="radio" id="filter-4" name="jeff" onClick={() => this.handleFilterClick("VFX")}/>
-                            <label htmlFor="filter-4">VFX</label>|
+                        <input type="radio" id="filter-3" onClick={() => this.handleFilterClick("VFX")}/>
+                        <label htmlFor="filter-3">VFX</label>|
 
-                            <input type="radio" id="filter-5" name="jeff" onClick={() => this.handleFilterClick("Design")}/>
-                            <label htmlFor="filter-5">Design</label>|
+                        <input type="radio" id="filter-4" onClick={() => this.handleFilterClick("Design")}/>
+                        <label htmlFor="filter-4">Design</label>|
 
-                            <input type="radio" id="filter-8" name="jeff" onClick={() => this.handleFilterClick("Film")}/>
-                            <label htmlFor="filter-8">Film</label>|
+                        <input type="radio" id="filter-5" onClick={() => this.handleFilterClick("Film")}/>
+                        <label htmlFor="filter-5">Film</label>|
 
-                            <input type="radio" id="filter-9" name="jeff" onClick={() => this.handleFilterClick("Sound")}/>
-                            <label htmlFor="filter-9" style={{borderRight: "none"}}>Sound</label>
-                        </div>
+                        <input type="radio" id="filter-6" onClick={() => this.handleFilterClick("Sound")}/>
+                        <label htmlFor="filter-6" style={{borderRight: "none"}}>Sound</label>
                     </form>
 
                     {sessionStorage.getItem("loggedIn") &&
