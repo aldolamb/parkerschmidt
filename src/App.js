@@ -8,9 +8,6 @@ import { Project } from "./project";
 import { Login } from "./login";
 import { Upload } from "./upload";
 import { Edit } from "./edit";
-import { Drop } from "./drop";
-import { Contact } from "./contact";
-import { Hookups } from "./hookups";
 
 export class App extends Component {
     componentDidMount () {
@@ -27,7 +24,6 @@ export class App extends Component {
                             <Route path='/edit/:postID'     component={Edit} />
                             <Route path='/upload'           component={Upload}/>
                             <Route path='/login'            component={Login} />
-                            <Route path='/contact'          component={Contact} />
                             <Route path='/:postID'          component={Project} />
                             <Route path='/'                 component={Main} />
                         </Switch>
@@ -35,9 +31,6 @@ export class App extends Component {
                     <Router>
                         <Switch>
                             <Route path='/login'            component={Login} />
-                            <Route path='/drop'             component={Drop} />
-                            <Route path='/contact'         component={Contact} />
-                            <Route path='/hookups'         component={Hookups} />
                             <Route path='/:postID'          component={Project} />
                             <Route path='/'                 component={Main} />
                         </Switch>
