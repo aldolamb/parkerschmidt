@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './css/App.css';
+import './stylesheets/css/index.css';
 
 import { Main } from "./main";
 import { Header } from "./partials/header";
@@ -8,10 +8,13 @@ import { Project } from "./project";
 import { Login } from "./login";
 import { Upload } from "./upload";
 import { Edit } from "./edit";
+import { Drop } from "./drop";
+import { Contact } from "./contact";
+import { Hookups } from "./hookups";
 
 export class App extends Component {
     componentDidMount () {
-        console.log('%cAldo Lamberti', 'text-align: center; padding: .5em 1em 1em .5em; font-weight: bold; font-size: 50px;color: #1a1a1a; text-shadow: 3px 3px 0 #333333, 6px 6px 0 #4d4d4d, 9px 9px 0 #666666, 12px 12px 0 #808080, 15px 15px 0 #999999, 18px 18px 0 #b3b3b3, 21px 21px 0 #cccccc, 24px 24px 0 #e6e6e6');
+        console.log('%cconcrete', 'text-align: center; padding: .3em .6em; font-weight: bold; font-size: 24px; color: white; background: black;');
     }
 
     render() {
@@ -24,6 +27,7 @@ export class App extends Component {
                             <Route path='/edit/:postID'     component={Edit} />
                             <Route path='/upload'           component={Upload}/>
                             <Route path='/login'            component={Login} />
+                            <Route path='/contact'          component={Contact} />
                             <Route path='/:postID'          component={Project} />
                             <Route path='/'                 component={Main} />
                         </Switch>
@@ -31,6 +35,9 @@ export class App extends Component {
                     <Router>
                         <Switch>
                             <Route path='/login'            component={Login} />
+                            <Route path='/drop'             component={Drop} />
+                            <Route path='/contact'         component={Contact} />
+                            <Route path='/hookups'         component={Hookups} />
                             <Route path='/:postID'          component={Project} />
                             <Route path='/'                 component={Main} />
                         </Switch>
