@@ -1,9 +1,5 @@
 import React from 'react';
-// const firebase = require("firebase");
-
-// const firebase = require('firebase/app');
-// require('firebase/firestore');
-import firebase from './config/firebase.js';
+import { firestore } from './config/firebase.js';
 
 export class Edit extends React.Component {
     constructor(props) {
@@ -52,7 +48,7 @@ export class Edit extends React.Component {
 
     async loadFeed() {
         let self = this;
-        firebase.firestore().collection("projects").doc(this.state.postID).get().then(snapshot => {
+        firestore.collection("projects").doc(this.state.postID).get().then(snapshot => {
             const snapshotData = snapshot.data();
             self.setState({data: snapshotData});
             document.getElementById("uploadTitle").value = snapshotData.Title;
@@ -116,7 +112,7 @@ export class Edit extends React.Component {
 
         const self = this;
 
-        firebase.firestore().collection("projects").doc(self.state.postID).set({
+        firestore.collection("projects").doc(self.state.postID).set({
             Date: self.state.data.Date,
             CoverImage: image,
             Title: title,

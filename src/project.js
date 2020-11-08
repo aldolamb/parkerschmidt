@@ -1,8 +1,5 @@
 import React from 'react';
-
-// const firebase = require('firebase/app');
-// require('firebase/firestore');
-import firebase from './config/firebase.js';
+import { firestore } from './config/firebase.js';
 
 export class Project extends React.Component {
     constructor(props) {
@@ -19,7 +16,7 @@ export class Project extends React.Component {
 
     async loadFeed() {
         let self = this;
-        firebase.firestore().collection("projects").doc(this.state.postID).get().then(snapshot => {
+        firestore.collection("projects").doc(this.state.postID).get().then(snapshot => {
             if (snapshot.exists) {
                 let tmp = snapshot.data();
                 if (tmp.Clips.length > 0)
@@ -32,7 +29,7 @@ export class Project extends React.Component {
             }
         }).then(() => {
             const data = [];
-            firebase.firestore().collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
+            firestore.collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
                 snapshot.forEach(doc => {data.push(doc.id);});
                 let length = data.length - 1;
                 let index = data.indexOf(this.state.postID);
@@ -48,7 +45,7 @@ export class Project extends React.Component {
 
     async handleDelete() {
         const self = this;
-        firebase.firestore().collection("projects").doc(this.state.postID).delete().then(function() {
+        firestore.collection("projects").doc(this.state.postID).delete().then(function() {
             self.props.history.push('/');
         }).catch(function(error) {
             window.alert("Error removing document: " + error);

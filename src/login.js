@@ -1,9 +1,5 @@
 import React from 'react';
-// const firebase = require("firebase");
-
-// const firebase = require('firebase/app');
-// require('firebase/auth');
-import firebase from './config/firebase.js';
+import { firebaseAuth } from './config/firebase.js';
 
 export class Login extends React.Component {
     async handleSubmit(e) {
@@ -12,7 +8,7 @@ export class Login extends React.Component {
         const self = this;
         e.preventDefault();
 
-        firebase.auth().signInWithEmailAndPassword(email, password)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
             .then(function() {
                 sessionStorage.setItem("loggedIn", true);
                 self.props.history.push('/')

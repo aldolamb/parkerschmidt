@@ -2,10 +2,7 @@ import React from "react";
 import { Footer } from "./partials/footer";
 import bodymovin from 'bodymovin'
 import animationData from './partials/Black Animation Intro.json'
-
-// const firebase = require('firebase/app');
-// require('firebase/firestore');
-import firebase from './config/firebase.js';
+import { firestore } from './config/firebase.js';
 
 export class Main extends React.Component {
     constructor(props) {
@@ -33,7 +30,7 @@ export class Main extends React.Component {
         self.setState({isLoaded: false});
 
         const data = [];
-        firebase.firestore().collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
+        firestore.collection("projects").orderBy('Date', 'desc').get().then(snapshot => {
             let lastVisible = snapshot.docs.length ? snapshot.docs[snapshot.docs.length - 1].data().Date : "";
             snapshot.forEach(doc => {
                 let temp = doc.data();
@@ -63,7 +60,7 @@ export class Main extends React.Component {
 
         e.preventDefault();
 
-        firebase.firestore().collection("posts").add({
+        firestore.collection("posts").add({
             Title: title,
             Date: date,
             Image: image,
@@ -77,7 +74,7 @@ export class Main extends React.Component {
         <div key={item.Date + "-wrapper"}>
             {(item.Roles.includes(this.state.filter) || this.state.filter === "All") &&
             <div key={item.Date} className="postContainer">
-                {window.innerWidth > 520 && <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>}
+                {/* {window.innerWidth > 520 && <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>} */}
                 <img src={item.CoverImage} alt={item.Title} key={"img-"+item.Title} id={"img-"+item.Title}/>
                 <h4>{item.Title}</h4>
                 <a key={item.Title} href={`/${item.key}`}/>

@@ -1,29 +1,9 @@
 import React from 'react';
-// const firebase = require("firebase");
-
-const firebase = require('firebase/app');
-require('firebase/firestore');
-// const functions = require('firebase-functions');
-// const getData = functions.httpsCallable('helloWorld');
+import { firestore } from './config/firebase.js';
 
 export class Upload extends React.Component {
 
     loadThumbnail(url) {
-        // axios.post("http://vimeo.com/api/oembed.json?url=" + url)
-        //     .then(results => {
-        //         console.log(results);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // console.log("ran")
-        // getData().then(function(result) {
-        //     // Read result of the Cloud Function.
-        //     // var sanitizedMessage = result.data.text;
-        //     alert(result);
-        //     // ...
-        // });
-
         if (url) {
             if (url.indexOf("youtube") !== -1) {
                 const videoCode = url.substring(url.indexOf("=") + 1);
@@ -100,7 +80,7 @@ export class Upload extends React.Component {
 
         const self = this;
 
-        firebase.firestore().collection("projects").doc().set({
+        firestore.collection("projects").doc().set({
             Date: date,
             CoverImage: image,
             Title: title,
