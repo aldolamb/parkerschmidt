@@ -39,7 +39,7 @@
     box-sizing: border-box;
     padding: 3vh 0;
     letter-spacing: 0;
-    font-family: 'Gotham-Medium', 'Montserrat', sans-serif;
+    font-family: "Gotham-Medium", "Montserrat", sans-serif;
     margin: auto;
   }
 
@@ -98,7 +98,7 @@
         height: inherit;
       }
       &:hover iframe {
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }
@@ -120,14 +120,28 @@
   li {
     width: 3em;
     height: 3em;
-    display: inline-block
+    display: inline-block;
   }
 
-  .adobeAfterEffects  {background: url("../../icons/Adobe After Effects Icon.svg");}
-  .adobeIllustrator   {background: url("../../icons/Adobe Illustrator Icon.svg");}
-  .adobePhotoshop     {background: url("../../icons/Adobe Photoshop Icon.svg");}
-  .adobePremiere      {background: url("../../icons/Adobe Premiere Icon.svg");}
-  .analog             {background: url("../../icons/Analog Icon.svg");}
-  .cinema4D           {background: url("../../icons/Cinema 4d Icon.svg");}
-  .reason             {background: url("../../icons/Reason Icon.svg");}
+  .adobeAfterEffects {
+    background: url("../../icons/Adobe After Effects Icon.svg");
+  }
+  .adobeIllustrator {
+    background: url("../../icons/Adobe Illustrator Icon.svg");
+  }
+  .adobePhotoshop {
+    background: url("../../icons/Adobe Photoshop Icon.svg");
+  }
+  .adobePremiere {
+    background: url("../../icons/Adobe Premiere Icon.svg");
+  }
+  .analog {
+    background: url("../../icons/Analog Icon.svg");
+  }
+  .cinema4D {
+    background: url("../../icons/Cinema 4d Icon.svg");
+  }
+  .reason {
+    background: url("../../icons/Reason Icon.svg");
+  }
 }

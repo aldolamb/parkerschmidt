@@ -125,10 +125,10 @@
   -o-transition: color 0.2s ease;
   transition: color 0.2s ease;
 }
-.filters input[type=radio] {
+.filters input[type="radio"] {
   display: none;
 }
-.filters input[type=radio]:checked + label {
+.filters input[type="radio"]:checked + label {
   border-top: black solid thin;
   border-bottom: black solid thin;
 }
@@ -137,10 +137,10 @@
   border-top: transparent solid thin;
   border-bottom: transparent solid thin;
 }
-.filters:hover input[type=radio]:hover + label {
+.filters:hover input[type="radio"]:hover + label {
   color: black;
 }
-.filters:hover input[type=radio]:checked + label:hover {
+.filters:hover input[type="radio"]:checked + label:hover {
   border-top: black solid thin;
   border-bottom: black solid thin;
 }
@@ -301,14 +301,21 @@
 .drop.productView .show > div {
   opacity: 100;
   padding-left: 40vh;
-  -webkit-transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 100ms;
+  -webkit-transition: padding-left 0.2s ease-in-out,
+    opacity 100ms ease-in-out 100ms;
   -o-transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 100ms;
   transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 100ms;
 }
 .drop.loading .items .itemContainer {
-  -webkit-transition: -webkit-transform 5s ease-in-out 0.6s, -webkit-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s, opacity 0.2s ease-in-out;
-  -o-transition: -o-transform 5s ease-in-out 0.6s, -o-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s, opacity 0.2s ease-in-out;
-  transition: transform 5s ease-in-out 0.6s, transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s, opacity 0.2s ease-in-out;
+  -webkit-transition: -webkit-transform 5s ease-in-out 0.6s,
+    -webkit-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+    opacity 0.2s ease-in-out;
+  -o-transition: -o-transform 5s ease-in-out 0.6s,
+    -o-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+    opacity 0.2s ease-in-out;
+  transition: transform 5s ease-in-out 0.6s,
+    transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+    opacity 0.2s ease-in-out;
 }
 .drop .show {
   position: absolute;
@@ -337,7 +344,8 @@
   height: 35vh;
   z-index: 1;
   opacity: 0;
-  -webkit-transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 0ms;
+  -webkit-transition: padding-left 0.2s ease-in-out,
+    opacity 100ms ease-in-out 0ms;
   -o-transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 0ms;
   transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 0ms;
   text-align: left;
@@ -472,24 +480,29 @@
   border: 1px solid #aaaaaa;
   border-radius: 4px;
 }
-.contact form input, .contact form textarea, .contact form button {
+.contact form input,
+.contact form textarea,
+.contact form button {
   width: 100%;
 }
 .contact form div {
   position: relative;
   margin-top: 12px;
 }
-.contact form div input, .contact form div textarea {
+.contact form div input,
+.contact form div textarea {
   padding: 24px 10px 6px 10px;
   box-sizing: border-box;
   border: 1px solid #aaaaaa;
   border-radius: 4px;
   font-size: 14px;
 }
-.contact form div input:focus, .contact form div textarea:focus {
+.contact form div input:focus,
+.contact form div textarea:focus {
   border-color: steelblue;
 }
-.contact form div input:focus + label, .contact form div textarea:focus + label {
+.contact form div input:focus + label,
+.contact form div textarea:focus + label {
   top: 10px;
   font-size: 12px;
   z-index: 1;
@@ -539,11 +552,15 @@ body {
   font-family: "Gotham", "Montserrat", sans-serif;
 }
 
-body, .projectPage {
+body,
+.projectPage {
   overflow-x: hidden;
 }
 
-textarea, select, input, button {
+textarea,
+select,
+input,
+button {
   outline: none;
 }
 
@@ -609,7 +626,8 @@ footer a {
   /* Standard */
 }
 
-a, a:hover {
+a,
+a:hover {
   color: black;
   text-decoration: none;
 }
@@ -617,7 +635,8 @@ a, a:hover {
 .upload {
   margin: 12vh 0;
 }
-.upload input[type=text], .upload textarea {
+.upload input[type="text"],
+.upload textarea {
   width: 30em;
 }
 .upload > form > div {
@@ -642,7 +661,8 @@ pre {
   line-height: 1.4;
 }
 
-.left, .right {
+.left,
+.right {
   width: 50%;
   padding: 0 5%;
   margin: auto 0;
@@ -678,7 +698,8 @@ pre {
     margin: 1em auto;
   }
 
-  .projectPage .left, .projectPage .right {
+  .projectPage .left,
+  .projectPage .right {
     width: 100%;
   }
 }
@@ -694,7 +715,8 @@ pre {
     margin: 9px;
     font-size: 0.78em;
   }
-  .main .posts .postContainer img, .main .posts .postContainer iframe {
+  .main .posts .postContainer img,
+  .main .posts .postContainer iframe {
     width: 192px;
     height: 108px;
   }
@@ -706,7 +728,9 @@ pre {
   }
 }
 @media only screen and (max-width: 420px) {
-  header .contactLink a span, .main .showReelVideo, .main .filters {
+  header .contactLink a span,
+  .main .showReelVideo,
+  .main .filters {
     display: none;
   }
 
@@ -745,7 +769,8 @@ pre {
     margin: 7px;
     font-size: 0.76em;
   }
-  .main .posts .postContainer img, .main .posts .postContainer iframe {
+  .main .posts .postContainer img,
+  .main .posts .postContainer iframe {
     width: 160px;
     height: 90px;
   }

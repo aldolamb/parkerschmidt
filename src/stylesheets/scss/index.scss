@@ -1,11 +1,11 @@
 @font-face {
-    font-family: "Gotham";
-    src: url("../../fonts/Gotham-Book (1).otf");
+  font-family: "Gotham";
+  src: url("../../fonts/Gotham-Book (1).otf");
 }
 
 @font-face {
-    font-family: "Gotham-Medium";
-    src: url("../../fonts/Gotham-Medium.otf");
+  font-family: "Gotham-Medium";
+  src: url("../../fonts/Gotham-Medium.otf");
 }
 
 //html, body, #root {
@@ -26,215 +26,248 @@
 @import "contact";
 
 body {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    letter-spacing: 5px;
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    font-family: 'Gotham', 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  letter-spacing: 5px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  font-family: "Gotham", "Montserrat", sans-serif;
 }
 
-body, .projectPage {
-    overflow-x: hidden;
+body,
+.projectPage {
+  overflow-x: hidden;
 }
 
-textarea, select, input, button { outline: none; }
+textarea,
+select,
+input,
+button {
+  outline: none;
+}
 
 button {
-    margin-top: 1em;
-    padding: .5em 1em;
-    font-size: 1em;
-    border-radius: 4px;
-    background-color: transparent;
-    border: black solid thin;
+  margin-top: 1em;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 4px;
+  background-color: transparent;
+  border: black solid thin;
 }
 
 header {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    letter-spacing: 1px;
-    display: inline-block;
-    width: 100vw;
-    padding: 0 5vw;
-    margin-top: .5vh;
-    //margin-top: 2.5vh;
-    font-size: 1.4em;
-    line-height: 11vh;
-    //line-height: 7vh;
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  display: inline-block;
+  width: 100vw;
+  padding: 0 5vw;
+  margin-top: 0.5vh;
+  //margin-top: 2.5vh;
+  font-size: 1.4em;
+  line-height: 11vh;
+  //line-height: 7vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 
-    .parkerSchmidt { float: left;  }
-    .contactLink   {
-        float: right;
-        img { vertical-align: text-top; display: none; }
+  .parkerSchmidt {
+    float: left;
+  }
+  .contactLink {
+    float: right;
+    img {
+      vertical-align: text-top;
+      display: none;
     }
+  }
 }
 
 footer {
-    width: 100%;
-    text-align: center;
-    letter-spacing: normal;
-    color: #aaaaaa;
-    font-size: .7em;
-    margin: 3vh 0 5vh;
-    line-height: normal;
-    a {
-        color: inherit;
-        -webkit-transition: color .2s ease;
-        -o-transition: color .2s ease;
-        transition: color .2s ease;
-    }
+  width: 100%;
+  text-align: center;
+  letter-spacing: normal;
+  color: #aaaaaa;
+  font-size: 0.7em;
+  margin: 3vh 0 5vh;
+  line-height: normal;
+  a {
+    color: inherit;
+    -webkit-transition: color 0.2s ease;
+    -o-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+  }
 }
 
 .noSelect {
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+/Edge */
-    user-select: none; /* Standard */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
-
-a, a:hover { color: black; text-decoration: none; }
-
-
-
+a,
+a:hover {
+  color: black;
+  text-decoration: none;
+}
 
 .upload {
-    margin: 12vh 0;
-    //padding: 2em 0 4em;
-    input[type=text], textarea {
-        width: 30em;
-    }
-    > form > div {
-        padding-top: 1em;
-    }
-    .uploadImages {
-        width: 30em;
-        margin: auto;
-    }
+  margin: 12vh 0;
+  //padding: 2em 0 4em;
+  input[type="text"],
+  textarea {
+    width: 30em;
+  }
+  > form > div {
+    padding-top: 1em;
+  }
+  .uploadImages {
+    width: 30em;
+    margin: auto;
+  }
 
-    .formUpload .showReelVideo {
-        width: 50vw;
-        height: 23.1vw;
+  .formUpload .showReelVideo {
+    width: 50vw;
+    height: 23.1vw;
 
-        max-width: 68vh;
-        max-height: 36.2vh;
+    max-width: 68vh;
+    max-height: 36.2vh;
 
-        min-width: 24vw;
-        min-height: 13.5vw;
-    }
+    min-width: 24vw;
+    min-height: 13.5vw;
+  }
 }
-
-
-
 
 pre {
-    font-family: inherit;
-    font-size: .8em;
-    line-height: 1.4;
+  font-family: inherit;
+  font-size: 0.8em;
+  line-height: 1.4;
 }
 
-.left, .right {
-    width: 50%;
-    padding: 0 5%;
-    margin: auto 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+.left,
+.right {
+  width: 50%;
+  padding: 0 5%;
+  margin: auto 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-.left  { float: left;  }
-.right { float: right; }
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
 
 .linkButton {
-    margin: 2em;
-    padding: .5em 1em;
-    font-size: 1em;
-    border-radius: 4px;
-    background-color: transparent;
-    border: black solid thin;
+  margin: 2em;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 4px;
+  background-color: transparent;
+  border: black solid thin;
 }
 
 @media only screen and (min-width: 768px) {
-    .filters { display: block; }
+  .filters {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    footer * { width: 100vw; margin: 1em auto;}
-    .projectPage {
-        .left, .right {
-            width: 100%;
-        }
+  footer * {
+    width: 100vw;
+    margin: 1em auto;
+  }
+  .projectPage {
+    .left,
+    .right {
+      width: 100%;
     }
+  }
 }
 
-
 @media only screen and (max-width: 520px) {
-    .main {
-        .posts .postContainer {
-            width: 192px;
-            padding: 9px;
-            a {
-                width: 210px;
-            }
-            h4 {
-                margin: 9px;
-                font-size: .78em;
-            }
-            img, iframe {
-                width: 192px;
-                height: 108px;
-            }
-            &:hover iframe {
-                display: none;
-            }
-        }
-        .filters { margin: 1.5em 0; }
+  .main {
+    .posts .postContainer {
+      width: 192px;
+      padding: 9px;
+      a {
+        width: 210px;
+      }
+      h4 {
+        margin: 9px;
+        font-size: 0.78em;
+      }
+      img,
+      iframe {
+        width: 192px;
+        height: 108px;
+      }
+      &:hover iframe {
+        display: none;
+      }
     }
+    .filters {
+      margin: 1.5em 0;
+    }
+  }
 }
 
 @media only screen and (max-width: 420px) {
-    header .contactLink a span, .main .showReelVideo, .main .filters { display: none; }
-    .projectPage h1 { font-size: 1.6em; }
-    header .contactLink a img { display: inline-block; }
-    //header .parkerSchmidt { float: none; text-align: center; width: 100%; line-height: 12vh; }
+  header .contactLink a span,
+  .main .showReelVideo,
+  .main .filters {
+    display: none;
+  }
+  .projectPage h1 {
+    font-size: 1.6em;
+  }
+  header .contactLink a img {
+    display: inline-block;
+  }
+  //header .parkerSchmidt { float: none; text-align: center; width: 100%; line-height: 12vh; }
 
-    .clip:hover iframe {
-        opacity: 1;
-    }
+  .clip:hover iframe {
+    opacity: 1;
+  }
 
-    header {
-        margin-top: 1vh;
-    }
+  header {
+    margin-top: 1vh;
+  }
 
-    .showReelVideo {
-        padding-top: 12vh;
-    }
+  .showReelVideo {
+    padding-top: 12vh;
+  }
 
-    .main {
-        padding-top: 11.5vh;
-        min-height: 78vh;
-        .posts {
-            .postContainer {
-                width: 160px;
-                padding: 8px;
-                a {
-                    width: 176px;
-                }
-                h4 {
-                    margin: 7px;
-                    font-size: .76em;
-                }
-                img, iframe {
-                    width: 160px;
-                    height: 90px;
-                }
-            }
+  .main {
+    padding-top: 11.5vh;
+    min-height: 78vh;
+    .posts {
+      .postContainer {
+        width: 160px;
+        padding: 8px;
+        a {
+          width: 176px;
         }
+        h4 {
+          margin: 7px;
+          font-size: 0.76em;
+        }
+        img,
+        iframe {
+          width: 160px;
+          height: 90px;
+        }
+      }
     }
+  }
 
-    .postContainer:hover iframe { display: none; }
+  .postContainer:hover iframe {
+    display: none;
+  }
 }

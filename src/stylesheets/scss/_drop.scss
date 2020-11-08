@@ -12,28 +12,41 @@
   max-height: 100vh;
   overflow-y: hidden;
   &.productView {
-    .items .itemContainer { opacity: 0;}
+    .items .itemContainer {
+      opacity: 0;
+    }
     .show {
-      width: 60vh; padding: 50vh;
-      img { cursor: pointer; }
+      width: 60vh;
+      padding: 50vh;
+      img {
+        cursor: pointer;
+      }
       > div {
         opacity: 100;
         padding-left: 40vh;
-        -webkit-transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 100ms;
-        -o-transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 100ms;
-        transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 100ms;
+        -webkit-transition: padding-left 0.2s ease-in-out,
+          opacity 100ms ease-in-out 100ms;
+        -o-transition: padding-left 0.2s ease-in-out,
+          opacity 100ms ease-in-out 100ms;
+        transition: padding-left 0.2s ease-in-out,
+          opacity 100ms ease-in-out 100ms;
       }
     }
   }
   &.loaded {
-
   }
   &.loading {
     .items {
       .itemContainer {
-        -webkit-transition: -webkit-transform 5s ease-in-out .6s, -webkit-transform-origin 5s ease-in-out .6s, top 5s ease-in-out .6s, opacity .2s ease-in-out;
-        -o-transition: -o-transform 5s ease-in-out .6s, -o-transform-origin 5s ease-in-out .6s, top 5s ease-in-out .6s, opacity .2s ease-in-out;
-        transition: transform 5s ease-in-out .6s, transform-origin 5s ease-in-out .6s, top 5s ease-in-out .6s, opacity .2s ease-in-out;
+        -webkit-transition: -webkit-transform 5s ease-in-out 0.6s,
+          -webkit-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+          opacity 0.2s ease-in-out;
+        -o-transition: -o-transform 5s ease-in-out 0.6s,
+          -o-transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+          opacity 0.2s ease-in-out;
+        transition: transform 5s ease-in-out 0.6s,
+          transform-origin 5s ease-in-out 0.6s, top 5s ease-in-out 0.6s,
+          opacity 0.2s ease-in-out;
       }
     }
   }
@@ -47,9 +60,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    -webkit-transition: .2s ease-in-out;
-    -o-transition: .2s ease-in-out;
-    transition: .2s ease-in-out;
+    -webkit-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
     opacity: 0;
     img {
       //position: absolute;
@@ -67,9 +80,11 @@
       height: 35vh;
       z-index: 1;
       opacity: 0;
-      -webkit-transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 0ms;
-      -o-transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 0ms;
-      transition: padding-left .2s ease-in-out, opacity 100ms ease-in-out 0ms;
+      -webkit-transition: padding-left 0.2s ease-in-out,
+        opacity 100ms ease-in-out 0ms;
+      -o-transition: padding-left 0.2s ease-in-out,
+        opacity 100ms ease-in-out 0ms;
+      transition: padding-left 0.2s ease-in-out, opacity 100ms ease-in-out 0ms;
       text-align: left;
       button {
         border: none;
@@ -112,9 +127,9 @@
       //-o-transition: -o-transform 5s ease-in-out .6s, -o-transform-origin 5s ease-in-out .6s, top 5s ease-in-out .6s, opacity .2s ease-in-out;
       //transition: transform 5s ease-in-out .6s, transform-origin 5s ease-in-out .6s, top 5s ease-in-out .6s, opacity .2s ease-in-out;
       div {
-        -webkit-transition: .4s ease-out 5.2s;
-        -o-transition: .4s ease-out 5.2s;
-        transition: .4s ease-out 5.2s;
+        -webkit-transition: 0.4s ease-out 5.2s;
+        -o-transition: 0.4s ease-out 5.2s;
+        transition: 0.4s ease-out 5.2s;
         opacity: 0;
       }
       img {
@@ -164,8 +179,8 @@
         opacity: 1;
       }
       img {
-        transform: scale(.9);
-        opacity: .5;
+        transform: scale(0.9);
+        opacity: 0.5;
       }
     }
 
