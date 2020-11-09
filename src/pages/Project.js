@@ -1,12 +1,12 @@
 import React from "react";
-import { firestore } from "./config/firebase.js";
+import { firestore } from "../utils/config/firebase.js";
 
 export class Project extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: { Roles: [] },
-      postID: props.match.params.postID,
+      postID: props.match.params.postID
     };
   }
 
@@ -20,7 +20,7 @@ export class Project extends React.Component {
       .collection("projects")
       .doc(this.state.postID)
       .get()
-      .then((snapshot) => {
+      .then(snapshot => {
         if (snapshot.exists) {
           let tmp = snapshot.data();
           if (tmp.Clips.length > 0) tmp.Clips.unshift(tmp.Video);
@@ -37,8 +37,8 @@ export class Project extends React.Component {
           .collection("projects")
           .orderBy("Date", "desc")
           .get()
-          .then((snapshot) => {
-            snapshot.forEach((doc) => {
+          .then(snapshot => {
+            snapshot.forEach(doc => {
               data.push(doc.id);
             });
             let length = data.length - 1;
@@ -48,11 +48,11 @@ export class Project extends React.Component {
             document.getElementById("backArrow").href =
               data[index > 0 ? index - 1 : length];
           })
-          .catch((err) => {
+          .catch(err => {
             console.log("Error getting documents", err);
           });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error getting documents", err);
       });
   }
@@ -71,7 +71,7 @@ export class Project extends React.Component {
       });
   }
 
-  createClips = (item) => (
+  createClips = item => (
     <div>
       {item &&
         item.map((clip, index) => (
@@ -120,7 +120,7 @@ export class Project extends React.Component {
                 <h1>{this.state.data.Title}</h1>
                 <p className="roles">
                   Roles:{" "}
-                  {this.state.data.Roles.map((role) => {
+                  {this.state.data.Roles.map(role => {
                     return role;
                   }).join(", ")}
                 </p>
@@ -132,7 +132,7 @@ export class Project extends React.Component {
                   {this.state.data.Description && (
                     <p
                       dangerouslySetInnerHTML={{
-                        __html: this.state.data.Description,
+                        __html: this.state.data.Description
                       }}
                     ></p>
                   )}
@@ -156,7 +156,7 @@ export class Project extends React.Component {
                   )}
                   <p style={{ margin: "0 auto" }}>Programs Used:</p>
                   <p style={{ margin: "0 auto" }}>
-                    {this.state.data.Tools.map((tool) => {
+                    {this.state.data.Tools.map(tool => {
                       return <li className={tool} key={tool} />;
                     })}
                   </p>
@@ -168,7 +168,7 @@ export class Project extends React.Component {
                   style={{
                     textAlign: "center",
                     letterSpacing: "normal",
-                    margin: "5vh",
+                    margin: "5vh"
                   }}
                 >
                   More From This Project

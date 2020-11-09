@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./stylesheets/css/index.css";
 
-import { Main } from "./main";
-import { Header } from "./partials/header";
-import { Project } from "./project";
-import { Login } from "./login";
-import { Upload } from "./upload";
-import { Edit } from "./edit";
+import { Header } from "./components";
+import { Edit, Login, Main, Project, Upload } from "./pages";
 
 export class App extends Component {
   componentDidMount() {

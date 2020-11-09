@@ -1,5 +1,5 @@
 import React from "react";
-import { firestore } from "./config/firebase.js";
+import { firestore } from "../utils/config/firebase.js";
 
 export class Upload extends React.Component {
   loadThumbnail(url) {
@@ -23,8 +23,8 @@ export class Upload extends React.Component {
         let thumbnail_url = "";
 
         fetch(apiURL)
-          .then((response) => response.json())
-          .then((results) => {
+          .then(response => response.json())
+          .then(results => {
             console.log(results);
             thumbnail_url = results["thumbnail_url"];
             // if (thumbnail_url.indexOf('_') !== -1)
@@ -45,7 +45,7 @@ export class Upload extends React.Component {
 
             // return thumbnail_url;
           })
-          .catch((error) => {
+          .catch(error => {
             window.alert("Error in video url: " + error);
           });
       }
@@ -110,7 +110,7 @@ export class Upload extends React.Component {
         Ratio: ratio,
         Roles,
         Tools,
-        Clips,
+        Clips
       })
       .then(() => {
         self.props.history.push(`/`);

@@ -1,5 +1,5 @@
 import React from "react";
-import { firebaseAuth } from "./config/firebase.js";
+import { firebaseAuth } from "../utils/config/firebase.js";
 
 export class Login extends React.Component {
   async handleSubmit(e) {

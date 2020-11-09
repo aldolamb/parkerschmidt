@@ -1,8 +1,9 @@
 import React from "react";
-import { Footer } from "./partials/footer";
+import { Footer } from "../components/Footer";
 import bodymovin from "bodymovin";
-import animationData from "./partials/Black Animation Intro.json";
-import { firestore } from "./config/firebase.js";
+import animationData from "../utils/Black_Animation_Intro.json";
+import { firestore } from "../utils/config/firebase.js";
+import { Post } from "../components";
 
 export class Main extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export class Main extends React.Component {
       data: [],
       isLoaded: true,
       lastVisible: "",
-      filter: "All",
+      filter: "All"
     };
   }
 
@@ -34,11 +35,11 @@ export class Main extends React.Component {
       .collection("projects")
       .orderBy("Date", "desc")
       .get()
-      .then((snapshot) => {
+      .then(snapshot => {
         let lastVisible = snapshot.docs.length
           ? snapshot.docs[snapshot.docs.length - 1].data().Date
           : "";
-        snapshot.forEach((doc) => {
+        snapshot.forEach(doc => {
           let temp = doc.data();
           temp.key = doc.id;
           data.push(temp);
@@ -54,7 +55,7 @@ export class Main extends React.Component {
           element.parentNode.removeChild(element);
         }, 1500);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error getting documents", err);
       });
   }
@@ -79,31 +80,17 @@ export class Main extends React.Component {
         Title: title,
         Date: date,
         Image: image,
-        URL: url,
+        URL: url
       })
       .then(() => {
         document.getElementById("contact-form").reset();
       });
   }
 
-  createPosts = (item) => (
-    <div key={item.Date + "-wrapper"}>
-      {(item.Roles.includes(this.state.filter) ||
-        this.state.filter === "All") && (
-        <div key={item.Date} className="postContainer">
-          {/* {window.innerWidth > 520 && <iframe key={"iframe-"+item.key} id={"iframe-"+item.key} src={item.Video + "?background=1"} frameBorder="0"/>} */}
-          <img
-            src={item.CoverImage}
-            alt={item.Title}
-            key={"img-" + item.Title}
-            id={"img-" + item.Title}
-          />
-          <h4>{item.Title}</h4>
-          <a key={item.Title} href={`/${item.key}`} />
-        </div>
-      )}
-    </div>
-  );
+  createPosts = item =>
+    (item.Roles.includes(this.state.filter) || this.state.filter === "All") && (
+      <Post item={item} />
+    );
 
   handleFilterClick(filter) {
     this.setState({ filter: filter });
@@ -116,7 +103,7 @@ export class Main extends React.Component {
         renderer: "svg",
         loop: true,
         autoplay: true,
-        animationData: animationData,
+        animationData: animationData
       };
 
       bodymovin.loadAnimation(animationProperties);
@@ -130,7 +117,7 @@ export class Main extends React.Component {
           <div id="loadingScreen" className="loadingScreen">
             <div
               className="loadingScreenIcon"
-              ref={(animationDiv) => {
+              ref={animationDiv => {
                 this.animationContainer = animationDiv;
               }}
             />

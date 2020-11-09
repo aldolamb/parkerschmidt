@@ -1,10 +1,10 @@
 @font-face {
   font-family: "Gotham";
-  src: url("../../fonts/Gotham-Book (1).otf");
+  src: url("../../utils/fonts/Gotham-Book (1).otf");
 }
 @font-face {
   font-family: "Gotham-Medium";
-  src: url("../../fonts/Gotham-Medium.otf");
+  src: url("../../utils/fonts/Gotham-Medium.otf");
 }
 .loadingScreen {
   position: fixed;
@@ -254,25 +254,25 @@
   display: inline-block;
 }
 .projectPage .adobeAfterEffects {
-  background: url("../../icons/Adobe After Effects Icon.svg");
+  background: url("../../utils/icons/Adobe After Effects Icon.svg");
 }
 .projectPage .adobeIllustrator {
-  background: url("../../icons/Adobe Illustrator Icon.svg");
+  background: url("../../utils/icons/Adobe Illustrator Icon.svg");
 }
 .projectPage .adobePhotoshop {
-  background: url("../../icons/Adobe Photoshop Icon.svg");
+  background: url("../../utils/icons/Adobe Photoshop Icon.svg");
 }
 .projectPage .adobePremiere {
-  background: url("../../icons/Adobe Premiere Icon.svg");
+  background: url("../../utils/icons/Adobe Premiere Icon.svg");
 }
 .projectPage .analog {
-  background: url("../../icons/Analog Icon.svg");
+  background: url("../../utils/icons/Analog Icon.svg");
 }
 .projectPage .cinema4D {
-  background: url("../../icons/Cinema 4d Icon.svg");
+  background: url("../../utils/icons/Cinema 4d Icon.svg");
 }
 .projectPage .reason {
-  background: url("../../icons/Reason Icon.svg");
+  background: url("../../utils/icons/Reason Icon.svg");
 }
 
 /* DROP */

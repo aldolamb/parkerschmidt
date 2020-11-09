@@ -1,12 +1,12 @@
 import React from "react";
-import { firestore } from "./config/firebase.js";
+import { firestore } from "../utils/config/firebase.js";
 
 export class Edit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
-      postID: props.match.params.postID,
+      postID: props.match.params.postID
     };
   }
 
@@ -25,8 +25,8 @@ export class Edit extends React.Component {
       let thumbnail_url = "";
 
       fetch(apiURL)
-        .then((response) => response.json())
-        .then((results) => {
+        .then(response => response.json())
+        .then(results => {
           console.log(results);
           thumbnail_url = results["thumbnail_url"];
           // if (thumbnail_url.indexOf('_') !== -1)
@@ -47,7 +47,7 @@ export class Edit extends React.Component {
 
           // return thumbnail_url;
         })
-        .catch((error) => {
+        .catch(error => {
           window.alert("Error in video url: " + error);
         });
     }
@@ -59,7 +59,7 @@ export class Edit extends React.Component {
       .collection("projects")
       .doc(this.state.postID)
       .get()
-      .then((snapshot) => {
+      .then(snapshot => {
         const snapshotData = snapshot.data();
         self.setState({ data: snapshotData });
         document.getElementById("uploadTitle").value = snapshotData.Title;
@@ -80,12 +80,12 @@ export class Edit extends React.Component {
           "uploadClientURL"
         ).value = snapshotData.ClientURL ? snapshotData.ClientURL : "";
         snapshotData.Roles.map(
-          (e) => (document.getElementById(e).checked = true)
+          e => (document.getElementById(e).checked = true)
         );
         snapshotData.Tools.map(
-          (e) => (document.getElementById(e).checked = true)
+          e => (document.getElementById(e).checked = true)
         );
-        snapshotData.Clips.map((e) => {
+        snapshotData.Clips.map(e => {
           let p = document.getElementById("uploadClips");
           let newElement = document.createElement("iframe");
           newElement.setAttribute("id", "clip" + (p.childElementCount + 1));
@@ -94,7 +94,7 @@ export class Edit extends React.Component {
           p.appendChild(newElement);
         });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("Error getting documents", err);
       });
   }
@@ -156,7 +156,7 @@ export class Edit extends React.Component {
         Ratio: ratio,
         Roles,
         Tools,
-        Clips,
+        Clips
       })
       .then(() => {
         self.props.history.push(`/${self.state.postID}`);

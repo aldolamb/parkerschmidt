@@ -1,5 +1,5 @@
 import React from "react";
-import Mail from "../icons/Contact.svg";
+import Mail from "../utils/icons/Contact.svg";
 
 export class Header extends React.Component {
   render() {
